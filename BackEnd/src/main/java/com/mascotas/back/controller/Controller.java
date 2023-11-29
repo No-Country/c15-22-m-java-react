@@ -4,8 +4,9 @@
  */
 package com.mascotas.back.controller;
 
+import com.mascotas.back.dto.PetDto;
 import com.mascotas.back.model.Pet;
-import com.mascotas.back.serviceImpl.MascotaServiceImpl;
+import com.mascotas.back.serviceImpl.PetServiceImpl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controller {
     
     @Autowired
-    private MascotaServiceImpl mserv;
+    private PetServiceImpl mserv;
     
     @GetMapping ("/prueba")
     public String prueba(){
@@ -29,14 +30,14 @@ public class Controller {
     
     
     @PostMapping ("/nueva/mascota")
-    public void nuevaMascota (@RequestBody Pet mas){
-        mserv.crearMascota(mas);
+    public void nuevaMascota (@RequestBody PetDto mas){
+        mserv.save(mas);
     }
     
     @GetMapping ("/ver/mascotas")
     @ResponseBody
-    public List<Pet> verMascotas(){
-        return mserv.verMascotas();
+    public List<Pet> listAll(){
+        return mserv.listAll();
     }
     
     
