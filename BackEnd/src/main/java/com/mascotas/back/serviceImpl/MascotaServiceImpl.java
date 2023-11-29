@@ -9,14 +9,14 @@ import com.mascotas.back.repository.PetRepository;
 import com.mascotas.back.service.MascotaService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class MascotaServiceImpl implements MascotaService {
     
-    
-    public final PetRepository mrepo;
+    @Autowired
+    public PetRepository mrepo;
 
     @Override
     public List<Pet> verMascotas() {
