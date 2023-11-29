@@ -4,8 +4,8 @@
  */
 package com.mascotas.back.serviceImpl;
 
-import com.mascotas.back.model.Mascota;
-import com.mascotas.back.repository.MascotaRepository;
+import com.mascotas.back.model.Pet;
+import com.mascotas.back.repository.PetRepository;
 import com.mascotas.back.service.MascotaService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -16,15 +16,15 @@ import org.springframework.stereotype.Service;
 public class MascotaServiceImpl implements MascotaService {
     
     
-    public final MascotaRepository mrepo;
+    public final PetRepository mrepo;
 
     @Override
-    public List<Mascota> verMascotas() {
+    public List<Pet> verMascotas() {
         return mrepo.findAll();
     }
 
     @Override
-    public void crearMascota(Mascota mas) {
+    public void crearMascota(Pet mas) {
         mrepo.save(mas);
     }
 
@@ -34,7 +34,7 @@ public class MascotaServiceImpl implements MascotaService {
     }
 
     @Override
-    public Mascota buscarMascota(Long id) {
+    public Pet buscarMascota(Long id) {
         return mrepo.findById(id).orElse(null);
     }
     

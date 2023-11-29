@@ -4,15 +4,15 @@
  */
 package com.mascotas.back.service;
 
-import com.mascotas.back.model.Mascota;
+import com.mascotas.back.model.Pet;
 import java.util.List;
 
 
 public interface MascotaService {
     
-    public List<Mascota> verMascotas();
-    public void crearMascota (Mascota mas);
+    public List<Pet> verMascotas();
+    public void crearMascota (Pet mas);
     public void eliminarMascota (Long id);
-    public Mascota buscarMascota (Long id);
+    public Pet buscarMascota (Long id);
     
 }

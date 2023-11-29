@@ -4,7 +4,7 @@
  */
 package com.mascotas.back.controller;
 
-import com.mascotas.back.model.Mascota;
+import com.mascotas.back.model.Pet;
 import com.mascotas.back.serviceImpl.MascotaServiceImpl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,13 +29,13 @@ public class Controller {
     
     
     @PostMapping ("/nueva/mascota")
-    public void nuevaMascota (@RequestBody Mascota mas){
+    public void nuevaMascota (@RequestBody Pet mas){
         mserv.crearMascota(mas);
     }
     
     @GetMapping ("/ver/mascotas")
     @ResponseBody
-    public List<Mascota> verMascotas(){
+    public List<Pet> verMascotas(){
         return mserv.verMascotas();
     }
     
