@@ -4,22 +4,28 @@
  */
 package com.mascotas.back.serviceImpl;
 
+import com.mascotas.back.dto.UserResponseDto;
 import com.mascotas.back.model.User;
 import com.mascotas.back.repository.UserRepository;
 import com.mascotas.back.service.UserService;
+
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
-    
-     @Autowired
+
+    @Autowired
     public UserRepository userRepo;
 
     @Override
-    public List<User> getUsers() {
-        return userRepo.findAll();
+    public List<UserResponseDto> getUsers() {
+        List<User> users = userRepo.findAll();
+        return users.stream()
+                .map(UserResponseDto::new).toList();
     }
 
     @Override
@@ -36,6 +42,6 @@ public class UserServiceImpl implements UserService {
     public User findUserById(Long id) {
         return userRepo.findById(id).orElse(null);
     }
-     
-     
+
+
 }

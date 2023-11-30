@@ -1,6 +1,7 @@
 
 package com.mascotas.back.controller;
 
+import com.mascotas.back.dto.UserResponseDto;
 import com.mascotas.back.model.User;
 import com.mascotas.back.service.UserService;
 import java.util.List;
@@ -25,7 +26,7 @@ public class UserController {
     
     @GetMapping
     @ResponseBody
-    public List <User> getUsers(){
+    public List <UserResponseDto> getUsers(){
         return userServ.getUsers();
     }
     

@@ -4,12 +4,13 @@
  */
 package com.mascotas.back.service;
 
+import com.mascotas.back.dto.UserResponseDto;
 import com.mascotas.back.model.User;
 import java.util.List;
 
 
 public interface UserService {
-    public List<User> getUsers();
+    public List<UserResponseDto> getUsers();
     public User createUser (User user);
     public void deleteUser (Long id);
     public User findUserById (Long id);
