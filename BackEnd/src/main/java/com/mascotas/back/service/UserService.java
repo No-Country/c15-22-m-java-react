@@ -13,5 +13,5 @@ public interface UserService {
     public List<UserResponseDto> getUsers();
     public User createUser (User user);
     public void deleteUser (Long id);
-    public User findUserById (Long id);
+    public UserResponseDto findUserById (Long id);
 }
