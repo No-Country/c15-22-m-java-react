@@ -7,7 +7,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import java.util.List;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -41,7 +43,7 @@ public class User {
     private RolUser rol;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Pet> pets;
+    private Set<Pet> pets = new HashSet<>();
 
     public User(String name, String lastName, String email, String password, String phone, RolUser rol) {
         this.name = name;
