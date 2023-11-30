@@ -52,12 +52,15 @@ public class UserController {
         UserResponseDto user = userServ.findUserById(id);
         if (user != null) {
             return ResponseEntity.ok(user);
-        } else {
-            return ResponseEntity
+        }
+        return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .body("Usuario no encontrado para el ID: " + id);
-        }
+    }
 
+    @GetMapping("/email/{email}")
+    public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
+        return ResponseEntity.ok(userServ.findUserByEmail(email));
     }
 
 
