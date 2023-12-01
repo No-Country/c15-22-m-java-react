@@ -1,10 +1,9 @@
 package com.mascotas.back.controller;
 
-import com.mascotas.back.dto.PetDto;
+import com.mascotas.back.dto.PetResponseDto;
 import com.mascotas.back.repository.PetRepository;
 import com.mascotas.back.service.PetService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -21,8 +20,8 @@ public class PetController {
     private final PetRepository petRepository;
 
     @GetMapping("/pets")
-    public ResponseEntity<Page<PetDto>> listPets(@PageableDefault(page = 0, size = 2, sort = {"name"}) Pageable paginacion){
-        return ResponseEntity.ok(petRepository.findAll(paginacion).map(PetDto::new));
+    public ResponseEntity<Page<PetResponseDto>> listPets(@PageableDefault(page = 0, size = 2, sort = {"name"}) Pageable paginacion){
+        return ResponseEntity.ok(petRepository.findAll(paginacion).map(PetResponseDto::new));
     }
     
 }

@@ -1,6 +1,6 @@
 package com.mascotas.back.serviceImpl;
 
-import com.mascotas.back.dto.PetDto;
+import com.mascotas.back.dto.PetResponseDto;
 import com.mascotas.back.model.Pet;
 import com.mascotas.back.repository.PetRepository;
 import com.mascotas.back.service.PetService;
@@ -20,7 +20,7 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public Pet save(PetDto mas) {
+    public Pet save(PetResponseDto mas) {
         Pet pet =new Pet();
         pet.setName(mas.getName());
         pet.setDescription(mas.getDescription());
