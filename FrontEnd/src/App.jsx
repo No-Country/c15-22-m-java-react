@@ -1,8 +1,12 @@
+import Header from "./components/Header";
+import Login from "./components/Login";
+
 function App() {
 
   return (
     <>
-      <h1 className="text-2xl">HOLA MUNDO - NO COUNTRY</h1>
+      <Header />
+      <Login />
     </>
   );
 }
