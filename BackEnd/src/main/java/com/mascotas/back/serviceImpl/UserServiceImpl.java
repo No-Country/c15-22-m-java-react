@@ -10,7 +10,7 @@ import com.mascotas.back.repository.UserRepository;
 import com.mascotas.back.service.UserService;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,9 +39,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserById(Long id) {
-        return userRepo.findById(id).orElse(null);
+    public UserResponseDto findUserById(Long id) {
+
+        Optional<User> userOptional = userRepo.findById(id);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            return  new UserResponseDto(user);
+        } else {
+            return null;
+        }
     }
 
+    @Override
+    public User findUserByEmail(String email) {
+        return userRepo.findByEmail(email).orElse(null);
+    }
 
 }

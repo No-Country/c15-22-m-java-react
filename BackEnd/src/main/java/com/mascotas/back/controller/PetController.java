@@ -4,6 +4,7 @@ import com.mascotas.back.dto.PetDto;
 import com.mascotas.back.repository.PetRepository;
 import com.mascotas.back.service.PetService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1")
 public class PetController {
-
     private final PetService petService;
     private final PetRepository petRepository;
 
