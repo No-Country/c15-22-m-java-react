@@ -6,6 +6,7 @@ import com.mascotas.back.model.User;
 import com.mascotas.back.service.UserService;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,7 +60,7 @@ public class UserController {
     }
 
     @GetMapping("/email/{email}")
-    public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
+    public ResponseEntity<Optional<User>> getUserByEmail(@PathVariable String email) {
         return ResponseEntity.ok(userServ.findUserByEmail(email));
     }
 

@@ -12,10 +12,12 @@ import com.mascotas.back.service.UserService;
 import java.util.List;
 import java.util.Optional;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -52,8 +54,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByEmail(String email) {
-        return userRepo.findByEmail(email).orElse(null);
+    public boolean existsByEmail (String email){
+        return userRepo.existsByEmail(email);
     }
 
+    @Override
+    public Optional<User> findUserByEmail(String email) {
+        return userRepo.findByEmail(email);
+    }
 }
