@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin()
+@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -34,6 +34,8 @@ public class UserController {
     public List<UserResponseDto> getUsers() {
         return userServ.getUsers();
     }
+
+
 
     @PostMapping
     public ResponseEntity<String> createUser(@RequestBody User user) {
