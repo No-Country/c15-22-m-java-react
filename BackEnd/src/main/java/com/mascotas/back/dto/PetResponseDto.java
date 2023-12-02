@@ -4,15 +4,12 @@ import com.mascotas.back.enums.StatePet;
 import com.mascotas.back.model.Pet;
 import java.io.Serializable;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class PetResponseDto implements Serializable {
     public String name;
     public String description;
@@ -32,5 +29,6 @@ public class PetResponseDto implements Serializable {
                new UserDto(pet.getUser())
             );
     }
+
 }
 

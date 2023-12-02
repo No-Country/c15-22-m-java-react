@@ -1,15 +1,14 @@
 package com.mascotas.back.service;
 
+import com.mascotas.back.dto.PetRequestCreationDto;
 import com.mascotas.back.dto.PetResponseDto;
 import com.mascotas.back.model.Pet;
-import java.util.List;
 
 public interface PetService {
-      
-    List<Pet> listAll();
-    Pet save(PetResponseDto pet);
-    void deleteById(Long id);
-    Pet findById(Long id);
-    boolean exsistById(Long id);
+
+    PetResponseDto findPetById(Long id);
+    void deletePetById(Long id);
+    Pet savePet(PetRequestCreationDto petRequestCreationDto);
+    boolean existsById(Long id);
        
 }

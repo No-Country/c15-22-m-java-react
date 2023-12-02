@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mascotas.back.model;
 
 import com.mascotas.back.enums.StatePet;
@@ -11,11 +7,12 @@ import lombok.*;
 @Entity
 @Table(name = "pets")
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Builder
 public class Pet {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pet_id")
