@@ -7,19 +7,19 @@ export default {
   ],
   theme: {
     fontFamily: {
-      'montserrat': ['Montserrat', 'sans-serif']},
-    colors:{
+      'montserrat': ['Montserrat', 'sans-serif']
+    },
+    colors: {
       "red-primary": '#BB2649',
       "beige-secondary": '#FFD6A5'
     },
     extend: {},
   },
   plugins: [
-<<<<<<< HEAD
+
     require('flowbite/plugin')
-=======
     // require('flowbite/plugin')
->>>>>>> navbar
+
   ],
 }
 

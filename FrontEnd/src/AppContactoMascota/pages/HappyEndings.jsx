@@ -1,5 +1,5 @@
+import Layout from "../../ui/Layout";
+
 export const HappyEndings = () => {
-  return (
-    <div>HappyEndings</div>
-  )
-}
+  return <Layout>HappyEndings</Layout>;
+};
