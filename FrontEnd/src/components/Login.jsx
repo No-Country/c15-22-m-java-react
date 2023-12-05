@@ -1,7 +1,11 @@
-
-//import { TEInput, TERipple } from "tw-elements-react";
+import Header from "./Header";
 
 const Login = () => {
+  const [isOpenLogin, setIsOpenLogin] = useState(false)
+
+  const openLogin = () => { 
+    setIsOpenLogin(!isOpenLogin);
+  };
 
 
     return (
@@ -144,10 +148,11 @@ const Login = () => {
             </div>
           </div>
         </div>
+        <Header openMOdalLogin={openLogin}/>
       </section>
     )
    
   
-  }
+}
   
   export default Login
