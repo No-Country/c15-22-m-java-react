@@ -1,3 +1,9 @@
+import Layout from "../../ui/Layout";
+
 export const Home = () => {
-  return <div>Home</div>;
+  return (
+    <Layout>
+      <main className="max-w-screen-xl mx-auto p-4">Home</main>
+    </Layout>
+  );
 };

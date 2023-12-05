@@ -7,7 +7,6 @@ import {
   Home,
   LostPetPage,
 } from "../AppContactoMascota/pages";
-import { Layout } from "../AppContactoMascota/components";
 
 export const AppRouter = () => {
   const [status, setStatus] = useState("authenticated");
@@ -20,7 +19,6 @@ export const AppRouter = () => {
         </>
       ) : (
         <>
-          <Route path="/" element={<Layout />} />
           <Route path="/" index element={<Home />} />
           <Route path="/finalesfelices" element={<HappyEndings />} />
           <Route path="/auth/mascotaencontrada" element={<FoundPetPage />} />
