@@ -52,6 +52,7 @@ public class PetController {
         URI url = uriComponentsBuilder.path("api/v1/pet/{id}").buildAndExpand(pet.getId()).toUri(); // Response header with link Get pet
         PetResponseDto petResponseDto = PetResponseDto
                 .builder()
+                .id(pet.getId())
                 .name(pet.getName())
                 .description(pet.getDescription())
                 .type(pet.getType())
