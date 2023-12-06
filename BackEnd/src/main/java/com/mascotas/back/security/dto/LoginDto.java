@@ -1,12 +1,13 @@
 package com.mascotas.back.security.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
-public class LoginRequestDto {
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class LoginDto {
 
     @NotBlank
     private String email;
