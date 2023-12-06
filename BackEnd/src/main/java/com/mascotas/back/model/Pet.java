@@ -4,6 +4,9 @@ import com.mascotas.back.enums.StatePet;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "pets")
 @Getter
@@ -40,5 +43,8 @@ public class Pet {
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL)
+    private Set<Image> images = new HashSet<>();
 
 }
