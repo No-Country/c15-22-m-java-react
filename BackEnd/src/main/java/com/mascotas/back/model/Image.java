@@ -17,7 +17,8 @@ public class Image {
     @Column(name = "image_id")
     private Long id;
 
-    @Lob @Basic(fetch = FetchType.LAZY)
+    @Basic(fetch = FetchType.LAZY)
+    @Column(columnDefinition = "BLOB(10000000)") // Hasta 10MB
     private byte[] image;
 
     @ManyToOne(targetEntity = Pet.class)

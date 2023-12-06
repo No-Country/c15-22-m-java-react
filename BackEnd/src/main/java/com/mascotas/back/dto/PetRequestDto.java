@@ -21,5 +21,6 @@ public class PetRequestDto implements Serializable {
     public Integer age;
     public StatePet state;
     public Long user_id;
+    public byte[] image;
 
 }

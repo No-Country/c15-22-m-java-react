@@ -1,10 +1,9 @@
 package com.mascotas.back.controller;
 
-import com.mascotas.back.dto.PetDto;
-import com.mascotas.back.dto.PetRequestDto;
-import com.mascotas.back.dto.PetResponseDto;
-import com.mascotas.back.dto.UserDto;
+import com.mascotas.back.dto.*;
+import com.mascotas.back.model.Image;
 import com.mascotas.back.model.Pet;
+import com.mascotas.back.repository.ImageRepository;
 import com.mascotas.back.repository.PetRepository;
 import com.mascotas.back.repository.UserRepository;
 import com.mascotas.back.service.PetService;
@@ -28,6 +27,7 @@ public class PetController {
     private final PetService petService;
     private final PetRepository petRepository;
     private final UserRepository userRepository;
+    private final ImageRepository imageRepository;
 
     @GetMapping("/pets")
     public ResponseEntity<Page<PetResponseDto>> listPets(@PageableDefault(page = 0, size = 4, sort = {"name"}, direction = Sort.Direction.DESC) Pageable pagination){
@@ -49,6 +49,12 @@ public class PetController {
     @PostMapping("/pet")
     public ResponseEntity<PetResponseDto> createPet(@RequestBody PetRequestDto petRequestDto, UriComponentsBuilder uriComponentsBuilder) {
         Pet pet = petService.savePet(petRequestDto);
+        Image image = Image
+                .builder()
+                .image(petRequestDto.getImage()) // Se asigna la imagen en base64
+                .pet(petRepository.getReferenceById(pet.getId())) // Se asigna la mascota según el id de la mascota creada
+                .build();
+        imageRepository.save(image);
         URI url = uriComponentsBuilder.path("api/v1/pet/{id}").buildAndExpand(pet.getId()).toUri(); // Response header with link Get pet
         PetResponseDto petResponseDto = PetResponseDto
                 .builder()
