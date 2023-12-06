@@ -11,6 +11,8 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class PetResponseDto implements Serializable {
+
+    public Long id;
     public String name;
     public String description;
     public String type;
@@ -20,7 +22,8 @@ public class PetResponseDto implements Serializable {
     public UserDto user;
     
     public PetResponseDto(Pet pet){
-        this(pet.getName(),
+        this(pet.getId(),
+               pet.getName(),
                pet.getDescription(),
                pet.getType(),
                pet.getRace(),
