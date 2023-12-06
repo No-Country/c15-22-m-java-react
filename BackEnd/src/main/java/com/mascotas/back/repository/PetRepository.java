@@ -23,7 +23,7 @@ public interface PetRepository extends  JpaRepository <Pet, Long>{
     
     @Query("SELECT p FROM Pet WHERE p.state = LOST")
     Optional<Pet> buscarMascotasPerdidas();
-    
+       
     @Query("SELECT p FROM Pet WHERE p.state = ADOPTION")
     Optional<Pet> buscarMascotasEnAdopcion();
     
