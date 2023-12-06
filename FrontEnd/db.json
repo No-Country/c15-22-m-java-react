@@ -1,0 +1,40 @@
+{
+  "finalesfelices": [
+    {
+      "id": 1,
+      "img": "https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg",
+      "desc_short": "Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
+      "title": "final feliz 1"
+    },
+    {
+      "id": 2,
+      "img": "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg",
+      "desc_short": "Here are the biggest enterprise technology acquisitions of 2022 so far, in reverse chronological order.",
+      "title": "final feliz 2"
+    },
+    {
+      "id": 3,
+      "img": "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg",
+      "desc_short": "Here are the biggest enterprise technology acquisitions of 2023 so far, in reverse chronological order.",
+      "title": "final feliz 3"
+    },
+    {
+      "id": 4,
+      "img": "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg",
+      "desc_short": "Here are the biggest enterprise technology acquisitions of 2024 so far, in reverse chronological order.",
+      "title": "final feliz 4"
+    },
+    {
+      "id": 5,
+      "img": "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
+      "desc_short": "Here are the biggest enterprise technology acquisitions of 2025 so far, in reverse chronological order.",
+      "title": "final feliz 5"
+    },
+    {
+      "id": 6,
+      "img": "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg",
+      "desc_short": "Here are the biggest enterprise technology acquisitions of 2026 so far, in reverse chronological order.",
+      "title": "final feliz 6"
+    }
+  ]
+}
