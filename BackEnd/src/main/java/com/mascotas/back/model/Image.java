@@ -6,9 +6,9 @@ import lombok.*;
 @Entity
 @Table(name = "images")
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 public class Image {
 
