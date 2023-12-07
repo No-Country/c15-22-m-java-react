@@ -1,6 +1,6 @@
 export const FormFoundPet = () => {
   return (
-    <form className="max-w-sm mx-auto w-full">
+    <form className="max-w-lg mx-auto">
       <div className="mb-5">
         <label
           htmlFor="email"

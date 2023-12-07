@@ -1,14 +1,14 @@
-import React from 'react'
-import Header from '../../components/Header'
-import Banner from '../../components/Banner'
+import Layout from "../../ui/Layout";
+import Banner from "../components/Banner"
+import Testimonial from "../components/Testimonial";
 
-const Home = () => {
+export const Home = () => {
   return (
-    <>
-    <Header />
-    {/* <Banner /> */}
-    </>
-  )
-}
-
-export default Home
+    <Layout>
+      
+      <Banner/>
+      <Testimonial/>
+      
+    </Layout>
+  );
+};
