@@ -31,13 +31,14 @@ public class PetServiceImpl implements PetService {
     public Pet savePet(PetRequestDto petRequestDto) {
         Pet pet = Pet
                 .builder()
+                .id(petRequestDto.id)
                 .name(petRequestDto.name)
                 .description(petRequestDto.description)
                 .type(petRequestDto.type)
                 .race(petRequestDto.race)
                 .age(petRequestDto.age)
                 .state(petRequestDto.state)
-                .user(userRepository.getReferenceById(petRequestDto.user_id)) // El método getReferenceById() obtiene el usuario correspondiente al user_id del petRequestCreationDto.
+                .user(userRepository.getReferenceById(petRequestDto.user_id)) // El método getReferenceById() obtiene el usuario igual a user_id.
                 .build();
         return petRepository.save(pet);
     }

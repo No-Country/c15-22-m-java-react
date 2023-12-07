@@ -14,6 +14,7 @@ import java.io.Serializable;
 @Builder
 public class PetRequestDto implements Serializable {
 
+    public Long id;
     public String name;
     public String description;
     public String type;
@@ -21,5 +22,6 @@ public class PetRequestDto implements Serializable {
     public Integer age;
     public StatePet state;
     public Long user_id;
+    public byte[] image;
 
 }
