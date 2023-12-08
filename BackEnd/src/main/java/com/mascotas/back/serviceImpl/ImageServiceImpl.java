@@ -84,5 +84,11 @@ public class ImageServiceImpl implements ImageService {
                 .build();
         return imageRepository.save(image);
     }
+    
+    
+    @Override
+    public boolean existsById(Long id) {
+        return imageRepository.existsById(id);
+    }
 
 }

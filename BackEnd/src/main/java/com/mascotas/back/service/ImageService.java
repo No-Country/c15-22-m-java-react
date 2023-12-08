@@ -11,5 +11,6 @@ public interface ImageService {
     Image updateImage(Long id ,byte[] imageBase64);
     void deleteImage(Long id);
     List<Image> listImage(Long id);
+    boolean existsById(Long id);
 
 }

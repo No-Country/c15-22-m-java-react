@@ -57,6 +57,27 @@ public class ImageController {
         return ResponseEntity.ok(imageResponse);
     }
 
+    
+    @PutMapping("/image/{id}")
+    public  ResponseEntity<ImageDto> updateImage(@PathVariable Long id, @RequestBody ImageDto imageDto) {
+
+           if (imageService.existsById(id)) {
+            Image image = imageService.updateImage(id, imageDto.imageBase64);
+            ImageDto imageResponseDto = new ImageDto()
+                    .builder()
+                    .imageBase64(image.getImage())
+                    .build();
+            return ResponseEntity.ok(imageResponseDto);
+        } else {
+            return null; // Crear excepción personalizada NOT_FOUND (id no existe)
+        }            /*-----Linkear a front----*/
+        }
+   
+    
+    
+    
+    
+    
 }
 
 /*
