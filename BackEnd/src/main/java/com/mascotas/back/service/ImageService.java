@@ -7,10 +7,10 @@ import java.util.List;
 public interface ImageService {
 
     Image saveImage(byte[] imageBase64, Pet pet);
-    Image saveImage(byte[] imageBase64, Long id);
-    Image updateImage(Long id ,byte[] imageBase64);
+    Image saveImage(byte[] imageBase64, Long pet_id);
+    Image updateImage(byte[] imageBase64, Long image_id);
     void deleteImage(Long id);
-    List<Image> listImage(Long id);
+    List<Image> listImage(Long pet_id);
     boolean existsById(Long id);
 
 }

@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 public class ImageServiceImpl implements ImageService {
 
     private final ImageRepository imageRepository;
-
     private final PetRepository petRepository;
 
     @Override
@@ -31,52 +30,40 @@ public class ImageServiceImpl implements ImageService {
 
     public void deleteImage(Long id) {
         Optional<Image> respuesta = imageRepository.findById(id);
-
         if (respuesta.isPresent()) {
             imageRepository.deleteById(id);
         }
-
     }
 
-    public Image updateImage(Long id, byte[] imageBase64) {
-
+    public Image updateImage(byte[] imageBase64, Long image_id) {
         Image image = new Image();
-
-        Optional<Image> respuesta = imageRepository.findById(id);
-
+        Optional<Image> respuesta = imageRepository.findById(image_id);
         if (respuesta.isPresent()) {
             image = respuesta.get();
             image.setImage(imageBase64);
             return imageRepository.save(image);
         }
-
         return null;
     }
 
-    public List<Image> listImage(Long id) {
-
-        Optional<Pet> respuesta = petRepository.findById(id);
-
-        if (respuesta.isPresent()) {
+    public List<Image> listImage(Long pet_id) {
+        Optional<Pet> pet = petRepository.findById(pet_id);
+        if (pet.isPresent()) {
             List<Image> images = imageRepository.findAll();
             List<Image> imagesFilter = new ArrayList();
             for (int i = 0; i < images.size(); i++) {
-
-                if (images.get(i).getPet().getId() == id) {
+                if (images.get(i).getPet().getId() == pet_id) {
                     imagesFilter.add(images.get(i));
                 }
-
             }
             return imagesFilter;
         }
-
         return null;
-
     }
 
     @Override
-    public Image saveImage(byte[] imageBase64, Long id) {
-        Pet pet = petRepository.getReferenceById(id);
+    public Image saveImage(byte[] imageBase64, Long pet_id) {
+        Pet pet = petRepository.getReferenceById(pet_id);
         Image image = Image
                 .builder()
                 .image(imageBase64) // Se asigna la imagen en base64
@@ -84,7 +71,6 @@ public class ImageServiceImpl implements ImageService {
                 .build();
         return imageRepository.save(image);
     }
-    
     
     @Override
     public boolean existsById(Long id) {
