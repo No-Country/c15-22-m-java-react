@@ -33,6 +33,7 @@ public class AuthService {
         String token = jwtService.getToken(user);
         return AuthResponse.builder()
                 .token(token)
+                .email(datos.getEmail())
                 .build();
     }
 
@@ -49,7 +50,7 @@ public class AuthService {
                 .email(datos.getEmail())
                 .password(passwordEncoder.encode(datos.getPassword()))
                 .phone(datos.getPhone())
-                .role(RoleUser.valueOf(datos.getRol()))
+                .role(RoleUser.valueOf("USER"))
                 .build();
 
         userRepository.save(user);

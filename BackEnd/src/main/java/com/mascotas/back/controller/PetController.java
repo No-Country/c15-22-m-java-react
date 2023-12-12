@@ -20,7 +20,7 @@ import java.net.URI;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1")
-@CrossOrigin()
+@CrossOrigin(origins="http://localhost:5173")
 public class PetController {
 
     private final PetService petService;
