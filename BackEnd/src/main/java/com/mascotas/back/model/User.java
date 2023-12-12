@@ -38,19 +38,18 @@ public class User {
     @Column(name = "phone", nullable = false)
     private String phone;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "rol", nullable = false)
-    private RolUser rol;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_rol", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
+    private Set<Rol> rol = new HashSet<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Pet> pets = new HashSet<>();
 
-    public User(String name, String lastName, String email, String password, String phone, RolUser rol) {
+    public User(String name, String lastName, String email, String password, String phone) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.phone = phone;
-        this.rol = rol;
     }
 }

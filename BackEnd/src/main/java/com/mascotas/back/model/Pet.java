@@ -1,21 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mascotas.back.model;
 
 import com.mascotas.back.enums.StatePet;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "pets")
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Builder
 public class Pet {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pet_id")
@@ -43,5 +43,8 @@ public class Pet {
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL)
+    private Set<Image> images = new HashSet<>();
 
 }

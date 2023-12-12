@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { ContactoMascotaContext } from "../context/ContactoMascotaProvider";
+
+
+
 
 const Header = () => {
+  const {openLoginModal}= useContext(ContactoMascotaContext)
+
   const [isReportDropdownOpen, setReportDropdownOpen] = useState(false);
 
   const toggleReportDropdown = () => {
@@ -10,6 +16,7 @@ const Header = () => {
 
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
+      
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link
           to={"/"}
@@ -25,18 +32,23 @@ const Header = () => {
           </span>
         </Link>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-          <button
+          <Link to={"/auth/login"}>
+          <button 
+            onClick={openLoginModal}
             type="button"
             className="text-black border-blue-800 border-2 mr-2 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Ingresar
           </button>
-          <button
+          </Link>
+          <Link to={"/auth/register"}>
+          <button 
             type="button"
-            className="text-white bg-primario hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="text-black bg-primario hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Registrar
           </button>
+          </Link>
           <button
             data-collapse-toggle="navbar-cta"
             type="button"
