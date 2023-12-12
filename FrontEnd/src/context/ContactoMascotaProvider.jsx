@@ -6,6 +6,8 @@ const ContactoMascotaProvider = ({ children }) => {
   const [pets, setPets] = useState([]);
   const [happyEndings, setHappyEndings] = useState([]);
 
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+
   const getPets = async () => {
     const url = `${
       import.meta.env.VITE_API_BACKEND
@@ -31,7 +33,15 @@ const ContactoMascotaProvider = ({ children }) => {
   }, []);
 
   return (
-    <ContactoMascotaContext.Provider value={{ happyEndings, pets }}>
+    <ContactoMascotaContext.Provider
+      value={{
+        mascotasperdidas,
+        happyEndings,
+        isLoginOpen,
+        openLoginModal,
+        closeLoginModal,
+      }}
+    >
       {children}
     </ContactoMascotaContext.Provider>
   );

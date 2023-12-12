@@ -1,3 +1,4 @@
+import Footer from "../AppContactoMascota/components/Footer";
 import Header from "./Header";
 
 const Layout = ({ children }) => {
@@ -5,6 +6,7 @@ const Layout = ({ children }) => {
     <div>
       <Header />
       {children}
+      <Footer />
     </div>
   );
 };
