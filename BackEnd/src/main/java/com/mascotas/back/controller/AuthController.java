@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
-@CrossOrigin ()
+@CrossOrigin (origins="http://localhost:5173")
 public class AuthController {
 
     private final AuthService authService;

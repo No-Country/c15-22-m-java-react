@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1")
-@CrossOrigin()
+@CrossOrigin(origins="http://localhost:5173")
 public class ImageController {
 
     private final ImageService imageService;
