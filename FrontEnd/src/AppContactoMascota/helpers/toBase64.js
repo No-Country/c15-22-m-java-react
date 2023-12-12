@@ -4,7 +4,8 @@ export const toBase64 = (file, callback) => {
     reader.readAsDataURL(file);
     reader.onload = () => {
 
-        callback(reader.result);
+        const base64String = reader.result.split(",")[1];
+        callback(base64String);
     };
 
     reader.onerror = (error) => {
