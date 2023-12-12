@@ -1,16 +1,18 @@
 package com.mascotas.back.dto;
 
 import com.mascotas.back.model.User;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserResponseDto {
+public class UserResponseDto implements Serializable {
 
     private String name;
     private String lastName;

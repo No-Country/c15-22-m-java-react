@@ -1,7 +1,22 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Layout from '../../ui/Layout'
+import { axiosMascota } from '../../config/axios.config';
 
 const Login = () => {
+const navigate = useNavigate()
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const data = Object.fromEntries(new FormData(e.target))
+    console.log(data)
+
+    axiosMascota
+      .post("/auth/login", data)
+      .then(({data}) => console.log(data)
+      )// navigate("/"))
+      .catch((err) => console.log(err))
+
+  }
+
   return (
     <Layout>
 
@@ -49,12 +64,13 @@ const Login = () => {
                       o iniciar sesión con credenciales
                     </p>
 
-                    <form className=" mx-5">
+                    <form onSubmit={handleSubmit} className=" mx-5">
                       {/* <p className="mb-4 font-montserrat font-light ">Por favor, ingrese a su cuenta</p> */}
                       {/* <!--Username input--> */}
                       <div className="grid  mb-4">
                         <label htmlFor="">Correo</label>
                         <input
+                        name='email'
                           type="text"
                           label="Username"
                           className="mb-4 border rounded-md"
@@ -65,6 +81,7 @@ const Login = () => {
                       <div className="grid  mb-2">
                         <label htmlFor="">Contraseña</label>
                         <input
+                        name='password'
                           type="password"
                           label="Password"
                           className="mb-4 border rounded-md"
@@ -95,7 +112,7 @@ const Login = () => {
                       <div className="mb-12 pb-1 pt-1 text-center">
                         <button
                           className="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
-                          type="button"
+                          //type="button"
                           style={{
                             background:
                               "linear-gradient(to right, #BB2649, #F35D74, #FFC3D4, #BB2649 )",

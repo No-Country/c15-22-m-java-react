@@ -1,10 +1,11 @@
 package com.mascotas.back.serviceImpl;
 
-import com.mascotas.back.dto.PetResponseDto;
+import com.mascotas.back.dto.PetRequestDto;
 import com.mascotas.back.model.Pet;
+import com.mascotas.back.dto.PetResponseDto;
 import com.mascotas.back.repository.PetRepository;
+import com.mascotas.back.repository.UserRepository;
 import com.mascotas.back.service.PetService;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,36 +14,37 @@ import org.springframework.stereotype.Service;
 public class PetServiceImpl implements PetService {
 
     private final PetRepository petRepository;
-  
+    private final UserRepository userRepository;
+
     @Override
-    public List<Pet> listAll() {
-        return petRepository.findAll();
+    public PetResponseDto findPetById(Long id) {
+        Pet pet = petRepository.findById(id).orElse(null);
+        return (pet != null) ? new PetResponseDto(pet) : null;
     }
 
     @Override
-    public Pet save(PetResponseDto mas) {
-        Pet pet =new Pet();
-        pet.setName(mas.getName());
-        pet.setDescription(mas.getDescription());
-        pet.setRace(mas.getRace());
-        pet.setAge(mas.getAge());
-        pet.setRace(mas.getRace());
-        pet.setType(mas.getType());
-        return petRepository.save(pet);
-    }
-
-    @Override
-    public void deleteById(Long id) {
+    public void deletePetById(Long id) {
         petRepository.deleteById(id);
     }
 
     @Override
-    public Pet findById(Long id) {
-        return petRepository.findById(id).orElse(null);
+    public Pet savePet(PetRequestDto petRequestDto) {
+        Pet pet = Pet
+                .builder()
+                .id(petRequestDto.id)
+                .name(petRequestDto.name)
+                .description(petRequestDto.description)
+                .type(petRequestDto.type)
+                .race(petRequestDto.race)
+                .age(petRequestDto.age)
+                .state(petRequestDto.state)
+                .user(userRepository.getReferenceById(petRequestDto.user_id)) // El método getReferenceById() obtiene el usuario igual a user_id.
+                .build();
+        return petRepository.save(pet);
     }
 
     @Override
-    public boolean exsistById(Long id) {
+    public boolean existsById(Long id) {
         return petRepository.existsById(id);
     }
 

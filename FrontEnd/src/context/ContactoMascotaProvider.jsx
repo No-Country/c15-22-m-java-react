@@ -1,10 +1,12 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useEffect, useState } from "react";
+
 
 const ContactoMascotaContext = createContext();
 
 const ContactoMascotaProvider = ({ children }) => {
   const [mascotasperdidas, setMascotasPerdidas] = useState([]);
-  
+  const [happyEndings, setHappyEndings] = useState([]);
+   
   const [isLoginOpen, setIsLoginOpen] = useState(false);
 
   const openLoginModal = () => {
@@ -12,11 +14,11 @@ const ContactoMascotaProvider = ({ children }) => {
   };
 
   const closeLoginModal = () => {
-    setIsLoginOpen(false);
-  };
-
+    setIsLoginOpen(false)
+  }
+  
   return (
-    <ContactoMascotaContext.Provider value={{ mascotasperdidas, isLoginOpen, openLoginModal, closeLoginModal }}>
+    <ContactoMascotaContext.Provider value={{ mascotasperdidas, happyEndings, isLoginOpen, openLoginModal, closeLoginModal }}>
       {children}
     </ContactoMascotaContext.Provider>
   );
