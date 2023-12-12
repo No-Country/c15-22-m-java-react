@@ -27,6 +27,16 @@ const ContactoMascotaProvider = ({ children }) => {
     } catch (error) {}
   };
 
+  
+
+  const openLoginModal = () => {
+    setIsLoginOpen(true);
+  };
+
+  const closeLoginModal = () => {
+    setIsLoginOpen(false);
+  };
+
   useEffect(() => {
     getHappyEndings();
     getPets();
@@ -35,11 +45,11 @@ const ContactoMascotaProvider = ({ children }) => {
   return (
     <ContactoMascotaContext.Provider
       value={{
-        mascotasperdidas,
         happyEndings,
         isLoginOpen,
         openLoginModal,
         closeLoginModal,
+        pets,
       }}
     >
       {children}
