@@ -20,7 +20,8 @@ public class PetResponseDto implements Serializable {
     public Integer age;
     public StatePet state;
     public UserDto user;
-    
+    public ImageDto image;
+
     public PetResponseDto(Pet pet){
         this(pet.getId(),
                pet.getName(),
@@ -29,8 +30,9 @@ public class PetResponseDto implements Serializable {
                pet.getRace(),
                pet.getAge(),
                pet.getState(),
-               new UserDto(pet.getUser())
-            );
+               new UserDto(pet.getUser()),
+               new ImageDto(pet.getImages()) // Se le pasa el argumento Set<Images>
+        );
     }
 
 }
