@@ -33,7 +33,6 @@ public class AuthService {
         String token = jwtService.getToken(user);
         return AuthResponse.builder()
                 .token(token)
-                .email(datos.getEmail())
                 .build();
     }
 

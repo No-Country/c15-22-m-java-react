@@ -43,11 +43,7 @@ public class AuthController {
        
     }
     
-    @GetMapping("prueba")
-    public String prueba(){
-        return "prueba";
-    }
-
+   
     @PostMapping("login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginDto datos) {
         try {

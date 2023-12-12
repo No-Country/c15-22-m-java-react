@@ -1,6 +1,7 @@
 package com.mascotas.back.controller;
 
 import com.mascotas.back.dto.*;
+import com.mascotas.back.model.Image;
 import com.mascotas.back.model.Pet;
 import com.mascotas.back.repository.PetRepository;
 import com.mascotas.back.service.ImageService;
@@ -47,7 +48,7 @@ public class PetController {
     @PostMapping("/pet")
     public ResponseEntity<PetResponseDto> createPet(@RequestBody PetRequestDto petRequestDto, UriComponentsBuilder uriComponentsBuilder) {
         Pet pet = petService.savePet(petRequestDto);
-        imageService.saveImage(petRequestDto.getImage(), pet);
+        Image image = imageService.saveImage(petRequestDto.getImage(), pet);
         URI url = uriComponentsBuilder.path("api/v1/pet/{id}").buildAndExpand(pet.getId()).toUri(); // Response header with link Get pet
         PetResponseDto petResponseDto = PetResponseDto
                 .builder()
@@ -59,6 +60,7 @@ public class PetController {
                 .age(pet.getAge())
                 .state(pet.getState())
                 .user(new UserDto(pet.getUser()))
+                .image(new ImageDto(image.getImage())) // Para cambiar el doble objeto anidado en la respuesta image: { imageBase64: { } } crear otro DTO response y en el campo image que sea de tipo byte[]
                 .build();
         return ResponseEntity.created(url).body(petResponseDto);
     }
