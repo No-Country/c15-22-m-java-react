@@ -6,13 +6,21 @@ package com.mascotas.back.service;
 
 import com.mascotas.back.dto.UserResponseDto;
 import com.mascotas.back.model.User;
+
 import java.util.List;
+import java.util.Optional;
 
 
 public interface UserService {
     public List<UserResponseDto> getUsers();
-    public User createUser (User user);
-    public void deleteUser (Long id);
-    public UserResponseDto findUserById (Long id);
-    public User findUserByEmail (String email);
+
+    public User createUser(User user);
+
+    public void deleteUser(Long id);
+
+    public UserResponseDto findUserById(Long id);
+
+    public Optional<User> findUserByEmail(String email);
+
+    public boolean existsByEmail(String email);
 }

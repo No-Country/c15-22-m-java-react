@@ -6,6 +6,7 @@ import com.mascotas.back.model.User;
 import com.mascotas.back.service.UserService;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin()
+@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -33,6 +34,8 @@ public class UserController {
     public List<UserResponseDto> getUsers() {
         return userServ.getUsers();
     }
+
+
 
     @PostMapping
     public ResponseEntity<String> createUser(@RequestBody User user) {
@@ -59,7 +62,7 @@ public class UserController {
     }
 
     @GetMapping("/email/{email}")
-    public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
+    public ResponseEntity<Optional<User>> getUserByEmail(@PathVariable String email) {
         return ResponseEntity.ok(userServ.findUserByEmail(email));
     }
 
