@@ -1,4 +1,3 @@
-
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import {
@@ -13,19 +12,17 @@ import Page404 from "../AppContactoMascota/pages/Page404";
 import PrivateRoutes from "../auth/PrivateRoutes";
 
 export const AppRouter = () => {
-  
-
   return (
     <Routes>
       <Route path="/auth/login" element={<Login />} />
       <Route path="/auth/register" element={<Register />} />
+      <Route path="/finalesfelices" element={<HappyEndings />} />
+      <Route path="/" index element={<Home />} />
 
       <Route element={<PrivateRoutes />}>
         <Route path="/*" element={<Navigate to="/" />} />
-        <Route path="/" index element={<Home />} />
         <Route path="/auth/mascotaencontrada" element={<FoundPetPage />} />
         <Route path="/auth/mascotaperdida" element={<LostPetPage />} />
-        <Route path="/finalesfelices" element={<HappyEndings />} />
       </Route>
 
       <Route path="*" element={<Page404 />} />
