@@ -6,18 +6,16 @@ const ContactoMascotaProvider = ({ children }) => {
   const [pets, setPets] = useState([]);
   const [happyEndings, setHappyEndings] = useState([]);
 
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+
   const getPets = async () => {
-    let requestOptions = {
-      method: "GET",
-      redirect: "follow",
-    };
     const url = `${
       import.meta.env.VITE_API_BACKEND
     }/api/v1/pets?size10&page=0&sort=name,asc`;
     try {
-      const res = await fetch(url, requestOptions);
-      console.log(res);
-      //const data = await res.json();
+      const res = await fetch(url);
+      const data = await res.json();
+      console.log(data);
     } catch (error) {}
   };
 
@@ -25,9 +23,18 @@ const ContactoMascotaProvider = ({ children }) => {
     try {
       const res = await fetch(import.meta.env.VITE_API_URL);
       const data = await res.json();
-      console.log(data);
       setHappyEndings(data);
     } catch (error) {}
+  };
+
+  
+
+  const openLoginModal = () => {
+    setIsLoginOpen(true);
+  };
+
+  const closeLoginModal = () => {
+    setIsLoginOpen(false);
   };
 
   useEffect(() => {
@@ -36,7 +43,15 @@ const ContactoMascotaProvider = ({ children }) => {
   }, []);
 
   return (
-    <ContactoMascotaContext.Provider value={{ happyEndings, pets }}>
+    <ContactoMascotaContext.Provider
+      value={{
+        happyEndings,
+        isLoginOpen,
+        openLoginModal,
+        closeLoginModal,
+        pets,
+      }}
+    >
       {children}
     </ContactoMascotaContext.Provider>
   );

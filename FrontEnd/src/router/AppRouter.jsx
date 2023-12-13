@@ -7,6 +7,9 @@ import {
   Home,
   LostPetPage,
 } from "../AppContactoMascota/pages";
+import Login from "../AppContactoMascota/components/Login";
+import Register from "../AppContactoMascota/components/Register";
+import Page404 from "../AppContactoMascota/pages/Page404"
 
 export const AppRouter = () => {
   const [status, setStatus] = useState("authenticated");
@@ -16,9 +19,13 @@ export const AppRouter = () => {
       {status === "not-authenticated" ? (
         <>
           <Route path="/*" element={<MascotasRoutes />} />
+          
         </>
       ) : (
         <>
+          <Route path="/auth/login" element={<Login />} />
+          <Route path="/auth/register" element={<Register />} />
+
           <Route path="/" index element={<Home />} />
           <Route path="/finalesfelices" element={<HappyEndings />} />
           <Route path="/auth/mascotaencontrada" element={<FoundPetPage />} />
@@ -26,6 +33,8 @@ export const AppRouter = () => {
           <Route path="/*" element={<Navigate to="/" />} />
         </>
       )}
+      <Route path="*" element={<Page404 />} />
     </Routes>
+    
   );
 };
