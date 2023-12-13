@@ -12,7 +12,6 @@ import java.util.Set;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 public class Pet {
     
@@ -45,6 +44,6 @@ public class Pet {
     private User user;
 
     @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL)
-    private Set<Image> images = new HashSet<>();
+    private  Set<Image> images = new HashSet<>();
 
 }
