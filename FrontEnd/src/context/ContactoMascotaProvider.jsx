@@ -6,6 +6,7 @@ const ContactoMascotaProvider = ({ children }) => {
   const [pets, setPets] = useState([]);
   const [happyEndings, setHappyEndings] = useState([]);
 
+
   const [isLoginOpen, setIsLoginOpen] = useState(false);
 
 
@@ -19,6 +20,14 @@ const ContactoMascotaProvider = ({ children }) => {
       //const data = await res.json();
     } catch (error) {}
   };
+
+ 
+
+  
+
+  
+
+  
 
   const getHappyEndings = async () => {
     try {
