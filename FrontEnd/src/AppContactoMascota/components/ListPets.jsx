@@ -1,28 +1,19 @@
-import React, { useState } from 'react'
-import { axiosMascota } from '../../config/axios.config'
-import PetCard from './PetCard'
+import { useContactoMascota } from "../../hooks/useContactoMascota";
+import PetCard from "./PetCard";
 
 const ListPets = () => {
-    const [pets, setPets] = useState([])
+  const { pets } = useContactoMascota();
 
-    axiosMascota
-    
-        .get("/api/v1/pets?size=10&page=0&sort=name,asc")
-        .then(({data}) => setPets(data))
-        .catch((err) => console.log(err))
-        console.log(data)
-        
-        
   return (
-    <section className=" pt-10 grid gap-6 justify-center grid-cols-[repeat(auto-fit,_260px)] max-w-[1200px] mx-auto">
-    {
-      pets.map((pet) => <PetCard key={pet} pet={pet} />)
-      
-    }
-    
-  </section>
-  
-  )
-}
+    <main className="bg-orange-100 py-6">
+      <h1 className="text-5xl font-bold text-center mb-5">Mascotas</h1>
+      <section className="grid gap-6 justify-between m-0 grid-cols-[repeat(auto-fit,_260px)] max-w-[1200px] mx-auto bg-orange">
+        {pets.map((pet) => (
+          <PetCard key={pet.id} pet={pet} />
+        ))}
+      </section>
+    </main>
+  );
+};
 
-export default ListPets
+export default ListPets;
