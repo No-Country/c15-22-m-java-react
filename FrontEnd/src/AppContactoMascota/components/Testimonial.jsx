@@ -1,7 +1,7 @@
 const Testimonial = () => {
   return (
     <section className="p-6">
-      <h2 className="text-5xl font-bold text-center my-5">
+      <h2 className="text-3xl md:text-5xl font-bold text-center my-5">
         Historias con finales felices
       </h2>
       <div className="container max-w-xl mx-auto">

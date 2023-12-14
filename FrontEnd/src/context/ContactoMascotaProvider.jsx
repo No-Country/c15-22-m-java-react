@@ -5,8 +5,8 @@ const ContactoMascotaContext = createContext();
 const ContactoMascotaProvider = ({ children }) => {
   const [pets, setPets] = useState([]);
   const [happyEndings, setHappyEndings] = useState([]);
-
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [user, setUser] = useState({});
 
   const getPets = async () => {
     const url = `${
@@ -27,6 +27,28 @@ const ContactoMascotaProvider = ({ children }) => {
     } catch (error) {}
   };
 
+  const getUser = async () => {
+    let {
+      state: {
+        user: { token },
+      },
+    } = JSON.parse(localStorage.getItem("userInfo"));
+    let url = `${import.meta.env.VITE_API_BACKEND}/user/profile`;
+
+    let myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    let requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    const res = await fetch(url, requestOptions);
+    const data = await res.json();
+    setUser(data);
+  };
+
   const openLoginModal = () => {
     setIsLoginOpen(true);
   };
@@ -40,6 +62,13 @@ const ContactoMascotaProvider = ({ children }) => {
     getPets();
   }, []);
 
+  useEffect(() => {
+    let datauser = JSON.parse(localStorage.getItem("userInfo"));
+    if (Object.values(datauser).length > 0) {
+      getUser();
+    }
+  }, []);
+
   return (
     <ContactoMascotaContext.Provider
       value={{
@@ -48,6 +77,7 @@ const ContactoMascotaProvider = ({ children }) => {
         openLoginModal,
         closeLoginModal,
         pets,
+        user,
       }}
     >
       {children}
