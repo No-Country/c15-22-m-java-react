@@ -17,7 +17,7 @@ export const LostPetPage = () => {
         </section>
         <section>
           <h1 className="text-2xl font-bold text-center mb-5">
-            Reportar Mascota Perdida
+            Reportar Mascota
           </h1>
           <FormLostPet />
         </section>
