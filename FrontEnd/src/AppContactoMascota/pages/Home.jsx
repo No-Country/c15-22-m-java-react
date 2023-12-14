@@ -8,7 +8,6 @@ export const Home = () => {
     <Layout>
       <Banner />
       <ListPets />
-      <h2 className="text-5xl font-bold text-center my-5">Historias con finales felices</h2>
       <Testimonial />
     </Layout>
   );
