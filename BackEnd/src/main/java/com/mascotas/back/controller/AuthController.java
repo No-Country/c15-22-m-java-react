@@ -23,7 +23,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("login")
-    public ResponseEntity<AuthResponse> login(@RequestBody LoginDto datos) {
+    public ResponseEntity<AuthResponse> login(@RequestBody @Valid LoginDto datos) {
         try {
             return ResponseEntity.ok(authService.login(datos));
         } catch (RuntimeException e) {
