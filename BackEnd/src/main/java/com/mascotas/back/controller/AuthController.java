@@ -5,6 +5,7 @@ import com.mascotas.back.security.dto.LoginDto;
 import com.mascotas.back.security.dto.RegisterDto;
 
 import com.mascotas.back.security.service.AuthService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +32,7 @@ public class AuthController {
     }
 
     @PostMapping("registro")
-    public ResponseEntity<AuthResponse> registro(@RequestBody RegisterDto datos) {
+    public ResponseEntity<AuthResponse> registro(@RequestBody @Valid RegisterDto datos) {
         try {
             return ResponseEntity.ok(authService.registro(datos));
         } catch (RuntimeException e) {
