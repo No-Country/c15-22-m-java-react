@@ -1,5 +1,6 @@
 package com.mascotas.back.serviceImpl;
 
+import com.mascotas.back.dto.ImageDto;
 import com.mascotas.back.model.Image;
 import com.mascotas.back.model.Pet;
 import com.mascotas.back.repository.ImageRepository;
@@ -75,6 +76,12 @@ public class ImageServiceImpl implements ImageService {
     @Override
     public boolean existsById(Long id) {
         return imageRepository.existsById(id);
+    }
+
+    @Override
+    public ImageDto findImageById(Long imageId) {
+        Image image = imageRepository.findById(imageId).orElse(null);
+        return (image != null) ? new ImageDto(image) : null;
     }
 
 }

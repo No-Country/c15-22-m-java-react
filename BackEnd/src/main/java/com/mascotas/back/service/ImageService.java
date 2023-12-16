@@ -1,5 +1,6 @@
 package com.mascotas.back.service;
 
+import com.mascotas.back.dto.ImageDto;
 import com.mascotas.back.model.Image;
 import com.mascotas.back.model.Pet;
 import java.util.List;
@@ -12,5 +13,5 @@ public interface ImageService {
     void deleteImage(Long id);
     List<Image> listImage(Long pet_id);
     boolean existsById(Long id);
-
+    ImageDto findImageById(Long imageId);
 }

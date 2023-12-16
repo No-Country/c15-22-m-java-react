@@ -37,19 +37,25 @@ public class ImageController {
         imageService.deleteImage(id);
     }
 
-    @GetMapping("/image/{pet_id}")
-    public ResponseEntity<List<ImageDto>> listImage(@PathVariable Long pet_id) {
+    @GetMapping("/images/{pet_id}")
+    public ResponseEntity<List<ImageDto>> listImages(@PathVariable Long pet_id) {
         List<Image> images = imageService.listImage(pet_id);
         List<ImageDto> imageDtoList = images.stream().map( // Iterando sobre la lista de tipo Image para obtener el campo "byte[] image"
                                                         image -> new ImageDto(image.getImage())
                                                         ).toList();
         return ResponseEntity.ok(imageDtoList);
     }
-    
+
+    @GetMapping("/image/{image_id}")
+    public ResponseEntity<ImageDto> getImage(@PathVariable Long image_id) {
+        ImageDto imageDto = imageService.findImageById(image_id);
+        return ResponseEntity.ok(imageDto);
+    }
+
     @PostMapping("/image/{pet_id}")
     public ResponseEntity<ImageDto> createImage(@RequestBody @Valid ImageDto imageDto, @PathVariable Long pet_id, UriComponentsBuilder uriComponentsBuilder){
         Image image = imageService.saveImage(imageDto.imageBase64, pet_id);
-        URI url = uriComponentsBuilder.path("api/v1/image/{id}").buildAndExpand(image.getId()).toUri();
+        URI url = uriComponentsBuilder.path("api/v1/image/{image_id}").buildAndExpand(image.getId()).toUri();
         ImageDto imageResponse = ImageDto.builder()
                 .imageBase64(image.getImage())
                 .build();
