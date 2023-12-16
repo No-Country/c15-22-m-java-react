@@ -4,7 +4,10 @@ import com.mascotas.back.dto.ImageDto;
 import com.mascotas.back.model.Image;
 import com.mascotas.back.service.ImageService;
 
+import java.net.URI;
 import java.util.List;
+
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequiredArgsConstructor
@@ -43,12 +47,13 @@ public class ImageController {
     }
     
     @PostMapping("/image/{pet_id}")
-    public ResponseEntity<ImageDto> createImage(@RequestBody ImageDto imageDto ,@PathVariable Long pet_id){
+    public ResponseEntity<ImageDto> createImage(@RequestBody @Valid ImageDto imageDto, @PathVariable Long pet_id, UriComponentsBuilder uriComponentsBuilder){
         Image image = imageService.saveImage(imageDto.imageBase64, pet_id);
+        URI url = uriComponentsBuilder.path("api/v1/image/{id}").buildAndExpand(image.getId()).toUri();
         ImageDto imageResponse = ImageDto.builder()
                 .imageBase64(image.getImage())
                 .build();
-        return ResponseEntity.ok(imageResponse);
+        return ResponseEntity.created(url).body(imageResponse);
     }
 
     @PutMapping("/image/{id}")
