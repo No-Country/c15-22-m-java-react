@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PetResponseDto implements Serializable {
+public class PetResponseCreateDto implements Serializable {
 
     public Long id;
     public String name;
@@ -22,7 +22,7 @@ public class PetResponseDto implements Serializable {
     public UserDto user;
     public ImageDto image;
 
-    public PetResponseDto(Pet pet){
+    public PetResponseCreateDto(Pet pet){
         this(pet.getId(),
                pet.getName(),
                pet.getDescription(),

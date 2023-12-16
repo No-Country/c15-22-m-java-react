@@ -1,8 +1,9 @@
 package com.mascotas.back.serviceImpl;
 
+import com.mascotas.back.dto.PetRequestCreateDto;
 import com.mascotas.back.dto.PetRequestUpdateDto;
 import com.mascotas.back.model.Pet;
-import com.mascotas.back.dto.PetResponseDto;
+import com.mascotas.back.dto.PetResponseCreateDto;
 import com.mascotas.back.repository.PetRepository;
 import com.mascotas.back.repository.UserRepository;
 import com.mascotas.back.service.PetService;
@@ -17,14 +18,29 @@ public class PetServiceImpl implements PetService {
     private final UserRepository userRepository;
 
     @Override
-    public PetResponseDto findPetById(Long id) {
+    public PetResponseCreateDto findPetById(Long id) {
         Pet pet = petRepository.findById(id).orElse(null);
-        return (pet != null) ? new PetResponseDto(pet) : null;
+        return (pet != null) ? new PetResponseCreateDto(pet) : null;
     }
 
     @Override
     public void deletePetById(Long id) {
         petRepository.deleteById(id);
+    }
+
+    @Override
+    public Pet savePet(PetRequestCreateDto petRequestCreateDto) {
+        Pet pet = Pet
+                .builder()
+                .name(petRequestCreateDto.name)
+                .description(petRequestCreateDto.description)
+                .type(petRequestCreateDto.type)
+                .race(petRequestCreateDto.race)
+                .age(petRequestCreateDto.age)
+                .state(petRequestCreateDto.state)
+                .user(userRepository.getReferenceById(petRequestCreateDto.user_id)) // El método getReferenceById() obtiene el usuario igual a user_id.
+                .build();
+        return petRepository.save(pet);
     }
 
     @Override

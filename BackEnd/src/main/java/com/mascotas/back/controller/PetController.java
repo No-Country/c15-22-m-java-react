@@ -30,13 +30,13 @@ public class PetController {
     private final ImageService imageService;
 
     @GetMapping("/pets")
-    public ResponseEntity<Page<PetResponseDto>> listPets(@PageableDefault(page = 0, size = 4, sort = {"name"}, direction = Sort.Direction.DESC) Pageable pagination){
-        return ResponseEntity.ok(petRepository.findAll(pagination).map(PetResponseDto::new));
+    public ResponseEntity<Page<PetResponseCreateDto>> listPets(@PageableDefault(page = 0, size = 4, sort = {"name"}, direction = Sort.Direction.DESC) Pageable pagination){
+        return ResponseEntity.ok(petRepository.findAll(pagination).map(PetResponseCreateDto::new));
     }
 
     @GetMapping("/pet/{id}")
-    public ResponseEntity<PetResponseDto> getPet(@PathVariable Long id) {
-        PetResponseDto pet = petService.findPetById(id);
+    public ResponseEntity<PetResponseCreateDto> getPet(@PathVariable Long id) {
+        PetResponseCreateDto pet = petService.findPetById(id);
         return ResponseEntity.ok(pet);
     }
 
@@ -46,12 +46,12 @@ public class PetController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    /*@PostMapping("/pet")
-    public ResponseEntity<PetResponseDto> createPet(@RequestBody PetRequestUpdateDto petRequestUpdateDto, UriComponentsBuilder uriComponentsBuilder) {
-        Pet pet = petService.savePet(petRequestUpdateDto);
-        Image image = imageService.saveImage(petRequestUpdateDto.getImage(), pet);
+    @PostMapping("/pet")
+    public ResponseEntity<PetResponseCreateDto> createPet(@RequestBody @Valid PetRequestCreateDto petRequestCreateDto, UriComponentsBuilder uriComponentsBuilder) {
+        Pet pet = petService.savePet(petRequestCreateDto);
+        Image image = imageService.saveImage(petRequestCreateDto.getImage(), pet);
         URI url = uriComponentsBuilder.path("api/v1/pet/{id}").buildAndExpand(pet.getId()).toUri(); // Response header with link Get pet
-        PetResponseDto petResponseDto = PetResponseDto
+        PetResponseCreateDto petResponseCreateDto = PetResponseCreateDto
                 .builder()
                 .id(pet.getId())
                 .name(pet.getName())
@@ -63,8 +63,8 @@ public class PetController {
                 .user(new UserDto(pet.getUser()))
                 .image(new ImageDto(image.getImage())) // Para cambiar el doble objeto anidado en la respuesta image: { imageBase64: { } } crear otro DTO response y en el campo image que sea de tipo byte[]
                 .build();
-        return ResponseEntity.created(url).body(petResponseDto);
-    }*/
+        return ResponseEntity.created(url).body(petResponseCreateDto);
+    }
 
     @PutMapping("/pet")
     public ResponseEntity<PetResponseUpdateDto> updatePet(@RequestBody @Valid PetRequestUpdateDto petRequestUpdateDto) {
