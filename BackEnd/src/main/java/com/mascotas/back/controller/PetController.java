@@ -6,6 +6,7 @@ import com.mascotas.back.model.Pet;
 import com.mascotas.back.repository.PetRepository;
 import com.mascotas.back.service.ImageService;
 import com.mascotas.back.service.PetService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -46,9 +47,9 @@ public class PetController {
     }
 
     @PostMapping("/pet")
-    public ResponseEntity<PetResponseDto> createPet(@RequestBody PetRequestDto petRequestDto, UriComponentsBuilder uriComponentsBuilder) {
-        Pet pet = petService.savePet(petRequestDto);
-        Image image = imageService.saveImage(petRequestDto.getImage(), pet);
+    public ResponseEntity<PetResponseDto> createPet(@RequestBody PetRequestUpdateDto petRequestUpdateDto, UriComponentsBuilder uriComponentsBuilder) {
+        Pet pet = petService.savePet(petRequestUpdateDto);
+        Image image = imageService.saveImage(petRequestUpdateDto.getImage(), pet);
         URI url = uriComponentsBuilder.path("api/v1/pet/{id}").buildAndExpand(pet.getId()).toUri(); // Response header with link Get pet
         PetResponseDto petResponseDto = PetResponseDto
                 .builder()
@@ -66,9 +67,9 @@ public class PetController {
     }
 
     @PutMapping("/pet")
-    public ResponseEntity<PetResponseDto> updatePet(@RequestBody PetRequestDto petRequestDto) {
-        if (petService.existsById(petRequestDto.getId())) {
-            Pet pet = petService.savePet(petRequestDto);
+    public ResponseEntity<PetResponseDto> updatePet(@RequestBody @Valid PetRequestUpdateDto petRequestUpdateDto) {
+        if (petService.existsById(petRequestUpdateDto.getId())) {
+            Pet pet = petService.savePet(petRequestUpdateDto);
             PetResponseDto petResponseDto = PetResponseDto
                     .builder()
                     .id(pet.getId())

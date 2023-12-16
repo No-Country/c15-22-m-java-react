@@ -1,6 +1,6 @@
 package com.mascotas.back.serviceImpl;
 
-import com.mascotas.back.dto.PetRequestDto;
+import com.mascotas.back.dto.PetRequestUpdateDto;
 import com.mascotas.back.model.Pet;
 import com.mascotas.back.dto.PetResponseDto;
 import com.mascotas.back.repository.PetRepository;
@@ -28,17 +28,17 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public Pet savePet(PetRequestDto petRequestDto) {
+    public Pet savePet(PetRequestUpdateDto petRequestUpdateDto) {
         Pet pet = Pet
                 .builder()
-                .id(petRequestDto.id)
-                .name(petRequestDto.name)
-                .description(petRequestDto.description)
-                .type(petRequestDto.type)
-                .race(petRequestDto.race)
-                .age(petRequestDto.age)
-                .state(petRequestDto.state)
-                .user(userRepository.getReferenceById(petRequestDto.user_id)) // El método getReferenceById() obtiene el usuario igual a user_id.
+                .id(petRequestUpdateDto.id)
+                .name(petRequestUpdateDto.name)
+                .description(petRequestUpdateDto.description)
+                .type(petRequestUpdateDto.type)
+                .race(petRequestUpdateDto.race)
+                .age(petRequestUpdateDto.age)
+                .state(petRequestUpdateDto.state)
+                .user(userRepository.getReferenceById(petRequestUpdateDto.user_id)) // El método getReferenceById() obtiene el usuario igual a user_id.
                 .build();
         return petRepository.save(pet);
     }
