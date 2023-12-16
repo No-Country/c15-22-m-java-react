@@ -56,10 +56,10 @@ public class ImageController {
         return ResponseEntity.created(url).body(imageResponse);
     }
 
-    @PutMapping("/image/{id}")
-    public  ResponseEntity<ImageDto> updateImage(@PathVariable Long id, @RequestBody ImageDto imageDto) {
-       if (imageService.existsById(id)) {
-            Image image = imageService.updateImage(imageDto.imageBase64, id);
+    @PutMapping("/image/{image_id}")
+    public  ResponseEntity<ImageDto> updateImage(@RequestBody @Valid ImageDto imageDto, @PathVariable Long image_id) {
+       if (imageService.existsById(image_id)) {
+            Image image = imageService.updateImage(imageDto.imageBase64, image_id);
             //Ejemplo para los create con Dto
             ImageDto imageResponseDto = ImageDto
                     .builder()
