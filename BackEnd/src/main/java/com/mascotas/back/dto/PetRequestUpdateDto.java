@@ -44,7 +44,4 @@ public class PetRequestUpdateDto implements Serializable {
     @NotNull(message = "user_id no puede ser nulo")
     public Long user_id;
 
-    @NotEmpty(message = "image no puede ser nulo o vacío")
-    public byte[] image;
-
 }

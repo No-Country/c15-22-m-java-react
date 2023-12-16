@@ -46,7 +46,7 @@ public class PetController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PostMapping("/pet")
+    /*@PostMapping("/pet")
     public ResponseEntity<PetResponseDto> createPet(@RequestBody PetRequestUpdateDto petRequestUpdateDto, UriComponentsBuilder uriComponentsBuilder) {
         Pet pet = petService.savePet(petRequestUpdateDto);
         Image image = imageService.saveImage(petRequestUpdateDto.getImage(), pet);
@@ -64,13 +64,13 @@ public class PetController {
                 .image(new ImageDto(image.getImage())) // Para cambiar el doble objeto anidado en la respuesta image: { imageBase64: { } } crear otro DTO response y en el campo image que sea de tipo byte[]
                 .build();
         return ResponseEntity.created(url).body(petResponseDto);
-    }
+    }*/
 
     @PutMapping("/pet")
-    public ResponseEntity<PetResponseDto> updatePet(@RequestBody @Valid PetRequestUpdateDto petRequestUpdateDto) {
+    public ResponseEntity<PetResponseUpdateDto> updatePet(@RequestBody @Valid PetRequestUpdateDto petRequestUpdateDto) {
         if (petService.existsById(petRequestUpdateDto.getId())) {
             Pet pet = petService.savePet(petRequestUpdateDto);
-            PetResponseDto petResponseDto = PetResponseDto
+            PetResponseUpdateDto petResponseUpdateDto = PetResponseUpdateDto
                     .builder()
                     .id(pet.getId())
                     .name(pet.getName())
@@ -81,7 +81,7 @@ public class PetController {
                     .state(pet.getState())
                     .user(new UserDto(pet.getUser()))
                     .build();
-            return ResponseEntity.ok(petResponseDto);
+            return ResponseEntity.ok(petResponseUpdateDto);
         } else {
             return null; // Crear excepción personalizada NOT_FOUND (id no existe)
         }
