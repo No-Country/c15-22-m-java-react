@@ -1,56 +1,63 @@
 package com.mascotas.back.controller;
 
 import com.mascotas.back.dto.*;
+import com.mascotas.back.exception.ResourceNotFoundException;
 import com.mascotas.back.model.Image;
 import com.mascotas.back.model.Pet;
 import com.mascotas.back.repository.PetRepository;
 import com.mascotas.back.service.ImageService;
 import com.mascotas.back.service.PetService;
+import com.mascotas.back.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api/v1")
+@RequiredArgsConstructor
 @CrossOrigin(origins="http://localhost:5173")
 public class PetController {
 
     private final PetService petService;
     private final PetRepository petRepository;
     private final ImageService imageService;
+    private final UserService userService;
 
     @GetMapping("/pets")
-    public ResponseEntity<Page<PetResponseCreateDto>> listPets(@PageableDefault(page = 0, size = 4, sort = {"name"}, direction = Sort.Direction.DESC) Pageable pagination){
+    public ResponseEntity<Page<PetResponseCreateDto>> listPets(Pageable pagination){
+        List<PetResponseCreateDto> petList = petRepository.findAll(pagination).map(PetResponseCreateDto::new).toList();
+        if (petList.isEmpty()) throw new ResourceNotFoundException("pets");
         return ResponseEntity.ok(petRepository.findAll(pagination).map(PetResponseCreateDto::new));
     }
 
     @GetMapping("/pet/{id}")
     public ResponseEntity<PetResponseCreateDto> getPet(@PathVariable Long id) {
         PetResponseCreateDto pet = petService.findPetById(id);
+        if (pet == null) throw new ResourceNotFoundException("pet", "id", id);
         return ResponseEntity.ok(pet);
     }
 
     @DeleteMapping("/pet/{id}")
     public ResponseEntity<?> deletePet(@PathVariable Long id) {
+        if (!petService.existsById(id)) throw new ResourceNotFoundException("pet", "id", id);
         petService.deletePetById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PostMapping("/pet")
     public ResponseEntity<PetResponseCreateDto> createPet(@RequestBody @Valid PetRequestCreateDto petRequestCreateDto, UriComponentsBuilder uriComponentsBuilder) {
+        if (!userService.existsById(petRequestCreateDto.user_id)) throw new ResourceNotFoundException("user", "user_id", petRequestCreateDto.user_id);
         Pet pet = petService.savePet(petRequestCreateDto);
         Image image = imageService.saveImage(petRequestCreateDto.getImage(), pet);
-        URI url = uriComponentsBuilder.path("api/v1/pet/{id}").buildAndExpand(pet.getId()).toUri(); // Response header with link Get pet
+        URI url = uriComponentsBuilder.path("api/v1/pet/{id}").buildAndExpand(pet.getId()).toUri();
         PetResponseCreateDto petResponseCreateDto = PetResponseCreateDto
                 .builder()
                 .id(pet.getId())
@@ -83,7 +90,7 @@ public class PetController {
                     .build();
             return ResponseEntity.ok(petResponseUpdateDto);
         } else {
-            return null; // Crear excepción personalizada NOT_FOUND (id no existe)
+            throw new ResourceNotFoundException("pet", "id", petRequestUpdateDto.getId());
         }
     }
 
