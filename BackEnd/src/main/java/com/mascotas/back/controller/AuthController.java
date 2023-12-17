@@ -5,12 +5,10 @@ import com.mascotas.back.security.dto.LoginDto;
 import com.mascotas.back.security.dto.RegisterDto;
 
 import com.mascotas.back.security.service.AuthService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +43,7 @@ public class AuthController {
     
    
     @PostMapping("login")
-    public ResponseEntity<AuthResponse> login(@RequestBody LoginDto datos) {
+    public ResponseEntity<AuthResponse> login(@RequestBody @Valid LoginDto datos) {
         try {
             return ResponseEntity.ok(authService.login(datos));
         } catch (RuntimeException e) {
@@ -54,7 +52,7 @@ public class AuthController {
     }
 
     @PostMapping("registro")
-    public ResponseEntity<AuthResponse> registro(@RequestBody RegisterDto datos) {
+    public ResponseEntity<AuthResponse> registro(@RequestBody @Valid RegisterDto datos) {
         try {
             return ResponseEntity.ok(authService.registro(datos));
         } catch (RuntimeException e) {

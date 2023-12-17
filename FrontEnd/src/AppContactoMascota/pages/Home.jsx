@@ -1,9 +1,16 @@
 import Layout from "../../ui/Layout";
+import Banner from "../components/Banner";
+import ListPets from "../components/ListPets";
+import SectionReport from "../components/SectionReport";
+import Testimonial from "../components/Testimonial";
 
 export const Home = () => {
   return (
     <Layout>
-      <main className="max-w-screen-xl mx-auto p-4">Home</main>
+      <Banner />
+      <SectionReport />
+      <ListPets />
+      <Testimonial />
     </Layout>
   );
 };

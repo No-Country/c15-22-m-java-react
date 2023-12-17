@@ -22,9 +22,6 @@ Aplicación web dedicada a exhibir datos acerca de mascotas que han sido encontr
 <code><img height="40" src="https://www.vectorlogo.zone/logos/springio/springio-ar21.svg" alt="Spring"/></code>
 <code><img height="40" src="https://www.vectorlogo.zone/logos/hibernate/hibernate-ar21.svg" alt="Hibernate"/></code>
 <code><img height="40" src="https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens" alt="JWT"/></code>
-<code><img height="40" src="" alt=""/></code>
-<code><img height="40" src="" alt=""/></code>
-<code><img height="40" src="" alt=""/></code>
 <code><img height="50" src="https://www.vectorlogo.zone/logos/mysql/mysql-ar21.svg" alt="MySQL"/></code>
 <code><img height="50" src="https://www.vectorlogo.zone/logos/getpostman/getpostman-ar21.svg" alt="Postman"/></code>
 
