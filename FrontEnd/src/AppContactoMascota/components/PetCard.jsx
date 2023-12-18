@@ -22,14 +22,14 @@ const PetCard = ({ pet }) => {
   }, [pet]);
 
   return (
-    <article className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-400">
+    <article className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-400 hover:scale-105 transition-all">
       {currentImage && (
         <img
           src={currentImage}
           alt={pet.name}
           width="300"
           height="300"
-          className="object-cover"
+          className="object-cover object-center h-60 rounded-tr-md rounded-tl-md"
         />
       )}
       <div className="p-5">

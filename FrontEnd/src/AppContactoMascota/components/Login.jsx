@@ -4,7 +4,6 @@ import { axiosMascota } from "../../config/axios.config";
 import { useUserInfo } from "../../store/userInfo";
 
 const Login = () => {
-
   const login = useUserInfo((state) => state.login);
 
   const navigate = useNavigate();
@@ -13,8 +12,6 @@ const Login = () => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target));
     console.log(data);
-
-  
 
     axiosMascota
       .post("/auth/login", data)
