@@ -29,7 +29,7 @@ const PetCard = ({ pet }) => {
           alt={pet.name}
           width="300"
           height="300"
-          className="object-cover object-center h-60 rounded-tr-md rounded-tl-md"
+          className="object-cover object-center h-60 rounded-tr-md rounded-tl-md w-full"
         />
       )}
       <div className="p-5">

@@ -1,13 +1,24 @@
+import { useEffect, useState } from "react";
 import { useContactoMascota } from "../../hooks/useContactoMascota";
 import Layout from "../../ui/Layout";
 import { HappyEndingCard } from "../components";
+import PetCard from "../components/PetCard";
 
 export const HappyEndings = () => {
-  const { happyEndings } = useContactoMascota();
+  const { pets } = useContactoMascota();
+  const [happyEndings, setHappyEndings] = useState([]);
+
+  useEffect(() => {
+    if (pets.length > 0) {
+      setHappyEndings(
+        pets.filter((pet) => pet.state === "FOUND" || pet.state === "ADOPTED")
+      );
+    }
+  }, [pets]);
 
   const renderHappyEndings = () => {
     if (happyEndings.length > 0) {
-      return happyEndings.map((h) => <HappyEndingCard key={h.id} data={h} />);
+      return happyEndings.map((h) => <PetCard key={h.id} pet={h} />);
     }
   };
 

@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { useContactoMascota } from "../../hooks/useContactoMascota";
 import Layout from "../../ui/Layout";
-import { FormLostPet } from "../components/FormLostPet";
 import PetCard from "../components/PetCard";
-import photoimage from "/girl_and_dog.png";
 
 export const LostPetPage = () => {
   const { pets } = useContactoMascota();
