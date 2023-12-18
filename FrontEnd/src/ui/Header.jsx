@@ -101,7 +101,7 @@ const Header = () => {
                   onClick={toggleReportDropdown}
                   className="flex items-center text-gray-900  hover:text-gray-500 focus:outline-none"
                 >
-                  Reportar
+                  Reportados
                   <svg
                     className="w-4 h-4 ml-1 text-gray-900 "
                     fill="none"

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { getImageOfBase64 } from "../helpers/getImageOfBase64";
+import { Link } from "react-router-dom";
 
 export const LastPetsCards = ({ pet }) => {
   const [currentImage, setCurrentImage] = useState("");
 
-  const { name, race, state } = pet;
+  const { name, race, state, id } = pet;
 
   useEffect(() => {
     const {
@@ -17,8 +18,8 @@ export const LastPetsCards = ({ pet }) => {
   }, [pet]);
 
   return (
-    <a
-      href="#"
+    <Link
+      to={`/mascota/${id}`}
       className="block max-w-sm m-0 p-0 bg-white border border-gray-200 rounded-lg shadow hover:bg-orange-200 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
     >
       {currentImage && (
@@ -36,6 +37,6 @@ export const LastPetsCards = ({ pet }) => {
       <p className="font-normal text-gray-700 dark:text-gray-400 text-center">
         Raza: {race}
       </p>
-    </a>
+    </Link>
   );
 };
