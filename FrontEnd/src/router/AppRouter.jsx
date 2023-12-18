@@ -6,6 +6,7 @@ import {
   HappyEndings,
   Home,
   LostPetPage,
+  PetPage,
   ReportPetPage,
 } from "../AppContactoMascota/pages";
 import Login from "../AppContactoMascota/components/Login";
@@ -21,6 +22,7 @@ export const AppRouter = () => {
       <Route path="/finalesfelices" element={<HappyEndings />} />
       <Route path="/mascotasperdidas" element={<LostPetPage />} />
       <Route path="/mascotasencontradas" element={<FoundPetPage />} />
+      <Route path="/mascota/:id" element={<PetPage />} />
       <Route path="/" index element={<Home />} />
 
       <Route element={<PrivateRoutes />}>

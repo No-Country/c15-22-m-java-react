@@ -4,7 +4,7 @@ import Layout from "../../ui/Layout";
 import PetCard from "../components/PetCard";
 
 export const FoundPetPage = () => {
-  const { pets } = useContactoMascota();
+  const { pets, setpetPage } = useContactoMascota();
   const [foundPets, setFoundPets] = useState([]);
 
   useEffect(() => {
@@ -16,6 +16,10 @@ export const FoundPetPage = () => {
   const renderFoundPets = () => {
     return foundPets.map((pet) => <PetCard key={pet.id} pet={pet} />);
   };
+
+  useEffect(() => {
+    setpetPage({});
+  }, []);
 
   return (
     <Layout>

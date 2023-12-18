@@ -8,6 +8,7 @@ const ContactoMascotaProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [lastPets, setLastPets] = useState([]);
   const [petsOfUser, setPetsOfUser] = useState([]);
+  const [petPage, setpetPage] = useState({});
 
   const getPets = async () => {
     const url = `${
@@ -17,6 +18,7 @@ const ContactoMascotaProvider = ({ children }) => {
       const res = await fetch(url);
       const data = await res.json();
       setPets(data.content);
+      setpetPage({});
     } catch (error) {}
   };
 
@@ -26,6 +28,17 @@ const ContactoMascotaProvider = ({ children }) => {
       const res = await fetch(url);
       const data = await res.json();
       setLastPets(data.content.slice(-3));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getPet = async (id) => {
+    try {
+      const url = `${import.meta.env.VITE_API_BACKEND}/api/v1/pet/${id}`;
+      const res = await fetch(url);
+      const data = await res.json();
+      setpetPage(data);
     } catch (error) {
       console.error(error);
     }
@@ -87,6 +100,7 @@ const ContactoMascotaProvider = ({ children }) => {
 
       const data = await res.json();
       console.log(data);
+      setpetPage({});
     } catch (error) {
       console.error(error);
     }
@@ -123,6 +137,9 @@ const ContactoMascotaProvider = ({ children }) => {
         reportPet,
         lastPets,
         petsOfUser,
+        getPet,
+        petPage,
+        setpetPage
       }}
     >
       {children}

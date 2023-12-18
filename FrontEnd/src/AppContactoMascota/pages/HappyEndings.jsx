@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { useContactoMascota } from "../../hooks/useContactoMascota";
 import Layout from "../../ui/Layout";
-import { HappyEndingCard } from "../components";
 import PetCard from "../components/PetCard";
 
 export const HappyEndings = () => {
-  const { pets } = useContactoMascota();
+  const { pets, setpetPage } = useContactoMascota();
   const [happyEndings, setHappyEndings] = useState([]);
 
   useEffect(() => {
@@ -21,6 +20,10 @@ export const HappyEndings = () => {
       return happyEndings.map((h) => <PetCard key={h.id} pet={h} />);
     }
   };
+
+  useEffect(() => {
+    setpetPage({});
+  }, []);
 
   return (
     <Layout>
