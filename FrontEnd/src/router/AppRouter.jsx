@@ -1,10 +1,13 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import {
+  DashboardPage,
   FoundPetPage,
   HappyEndings,
   Home,
   LostPetPage,
+  PetPage,
+  ReportPetPage,
 } from "../AppContactoMascota/pages";
 import Login from "../AppContactoMascota/components/Login";
 import Register from "../AppContactoMascota/components/Register";
@@ -17,12 +20,15 @@ export const AppRouter = () => {
       <Route path="/auth/login" element={<Login />} />
       <Route path="/auth/register" element={<Register />} />
       <Route path="/finalesfelices" element={<HappyEndings />} />
+      <Route path="/mascotasperdidas" element={<LostPetPage />} />
+      <Route path="/mascotasencontradas" element={<FoundPetPage />} />
+      <Route path="/mascota/:id" element={<PetPage />} />
       <Route path="/" index element={<Home />} />
 
       <Route element={<PrivateRoutes />}>
         <Route path="/*" element={<Navigate to="/" />} />
-        <Route path="/auth/mascotaencontrada" element={<FoundPetPage />} />
-        <Route path="/auth/mascotaperdida" element={<LostPetPage />} />
+        <Route path="/auth/dashboard" element={<DashboardPage />} />
+        <Route path="/auth/reportarmascota" element={<ReportPetPage />} />
       </Route>
 
       <Route path="*" element={<Page404 />} />

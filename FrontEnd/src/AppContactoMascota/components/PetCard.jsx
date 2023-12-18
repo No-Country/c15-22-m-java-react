@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { getImageOfBase64 } from "../helpers/getImageOfBase64";
+import { Link } from "react-router-dom";
 const PetCard = ({ pet }) => {
   const [currentImage, setCurrentImage] = useState("");
-  const { name, race, state } = pet;
+  const { name, race, state, id } = pet;
 
   let states = {
     ADOPTED: "Adoptado",
@@ -22,14 +23,14 @@ const PetCard = ({ pet }) => {
   }, [pet]);
 
   return (
-    <article className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-400">
+    <article className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-400 hover:scale-105 transition-all">
       {currentImage && (
         <img
           src={currentImage}
           alt={pet.name}
           width="300"
           height="300"
-          className="object-cover"
+          className="object-cover object-center h-60 rounded-tr-md rounded-tl-md w-full"
         />
       )}
       <div className="p-5">
@@ -44,8 +45,8 @@ const PetCard = ({ pet }) => {
         <p className="font-normal text-gray-700 dark:text-gray-400">
           Estado: {states[state]}
         </p>
-        <a
-          href="#"
+        <Link
+          to={`/mascota/${id}`}
           className="my-2 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-orange-400 rounded-lg hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-600 dark:hover:bg-orange-400 dark:focus:ring-orange-800"
         >
           Leer más
@@ -64,7 +65,7 @@ const PetCard = ({ pet }) => {
               d="M1 5h12m0 0L9 1m4 4L9 9"
             />
           </svg>
-        </a>
+        </Link>
       </div>
     </article>
   );

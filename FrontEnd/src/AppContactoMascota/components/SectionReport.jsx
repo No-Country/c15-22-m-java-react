@@ -10,7 +10,7 @@ const SectionReport = () => {
           encontrada?
         </p>
         <Link
-          to={"/auth/mascotaperdida"}
+          to={"/auth/dashboard"}
           type="button"
           className="bg-orange-200 py-2 px-4 rounded-md mt-2"
         >

@@ -1,8 +1,11 @@
 import { useState } from "react";
 import useForm from "../hooks/useForm";
 import { toBase64 } from "../helpers/toBase64";
+import { useContactoMascota } from "../../hooks/useContactoMascota";
+import toast, { Toaster } from "react-hot-toast";
 
 export const FormLostPet = () => {
+  const { reportPet, user } = useContactoMascota();
   const [fileInputValue, setFileInputValue] = useState("");
   let {
     formState: { name, description, type, race, age, state, image },
@@ -17,6 +20,7 @@ export const FormLostPet = () => {
     age: "",
     state: "",
     image: "",
+    user_id: "",
   });
 
   const handleFileInputChange = (event) => {
@@ -26,15 +30,21 @@ export const FormLostPet = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    formState.user_id = Number(user.id);
 
     toBase64(fileInputValue, (base64String) => {
       formState.image = base64String;
+      console.log(formState);
+      reportPet(formState);
     });
-    console.log(formState);
+
+    toast.success("Mascota reportada", { duration: 4000 });
+    onResetForm();
   };
 
   return (
     <form className="max-w-lg mx-auto" onSubmit={handleSubmit}>
+      <Toaster position="top-right" reverseOrder={false} />
       <div className="mb-5">
         <label
           htmlFor="email"
@@ -160,6 +170,7 @@ export const FormLostPet = () => {
           accept=".jpg, .png, .svg"
           name="image"
           onChange={handleFileInputChange}
+          required
         />
         <p
           className="mt-1 text-sm text-gray-500 dark:text-gray-300"

@@ -101,7 +101,7 @@ const Header = () => {
                   onClick={toggleReportDropdown}
                   className="flex items-center text-gray-900  hover:text-gray-500 focus:outline-none"
                 >
-                  Reportar
+                  Reportados
                   <svg
                     className="w-4 h-4 ml-1 text-gray-900 "
                     fill="none"
@@ -120,13 +120,13 @@ const Header = () => {
                 {isReportDropdownOpen && (
                   <div className="absolute mt-2 w-48 bg-white rounded-md shadow-lg">
                     <Link
-                      to={"/auth/mascotaperdida"}
+                      to={"/mascotasperdidas"}
                       className="block px-4 py-2 text-sm text-gray-500 hover:bg-gray-100"
                     >
                       Mascota perdida
                     </Link>
                     <Link
-                      to={"/auth/mascotaencontrada"}
+                      to={"/mascotasencontradas"}
                       className="block px-4 py-2 text-sm text-gray-500 hover:bg-gray-100"
                     >
                       Encontré una mascota

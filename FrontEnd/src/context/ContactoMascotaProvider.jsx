@@ -4,9 +4,11 @@ const ContactoMascotaContext = createContext();
 
 const ContactoMascotaProvider = ({ children }) => {
   const [pets, setPets] = useState([]);
-  const [happyEndings, setHappyEndings] = useState([]);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [user, setUser] = useState({});
+  const [lastPets, setLastPets] = useState([]);
+  const [petsOfUser, setPetsOfUser] = useState([]);
+  const [petPage, setpetPage] = useState({});
 
   const getPets = async () => {
     const url = `${
@@ -16,37 +18,92 @@ const ContactoMascotaProvider = ({ children }) => {
       const res = await fetch(url);
       const data = await res.json();
       setPets(data.content);
+      setpetPage({});
     } catch (error) {}
   };
 
-  const getHappyEndings = async () => {
+  const getLastPets = async () => {
     try {
-      const res = await fetch(import.meta.env.VITE_API_URL);
+      const url = `${import.meta.env.VITE_API_BACKEND}/api/v1/pets`;
+      const res = await fetch(url);
       const data = await res.json();
-      setHappyEndings(data);
-    } catch (error) {}
+      setLastPets(data.content.slice(-3));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getPet = async (id) => {
+    try {
+      const url = `${import.meta.env.VITE_API_BACKEND}/api/v1/pet/${id}`;
+      const res = await fetch(url);
+      const data = await res.json();
+      setpetPage(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const getUser = async () => {
-    let {
-      state: {
-        user: { token },
-      },
-    } = JSON.parse(localStorage.getItem("userInfo"));
-    let url = `${import.meta.env.VITE_API_BACKEND}/user/profile`;
+    try {
+      let {
+        state: {
+          user: { token },
+        },
+      } = JSON.parse(localStorage.getItem("userInfo"));
 
-    let myHeaders = new Headers();
-    myHeaders.append("Authorization", `Bearer ${token}`);
+      if (!token) {
+        throw new Error("No se pudo obtener el token del usuario.");
+      }
+      let url = `${import.meta.env.VITE_API_BACKEND}/user/profile`;
 
-    let requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    };
+      let myHeaders = new Headers();
+      myHeaders.append("Authorization", `Bearer ${token}`);
 
-    const res = await fetch(url, requestOptions);
-    const data = await res.json();
-    setUser(data);
+      let requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+
+      const res = await fetch(url, requestOptions);
+      const data = await res.json();
+      setUser(data);
+      setPetsOfUser(data.pets);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const reportPet = async (form) => {
+    try {
+      let {
+        state: {
+          user: { token },
+        },
+      } = JSON.parse(localStorage.getItem("userInfo"));
+
+      if (!token) {
+        throw new Error("No se pudo obtener el token del usuario.");
+      }
+
+      let url = `${import.meta.env.VITE_API_BACKEND}/api/v1/pet`;
+
+      const res = await fetch(url, {
+        method: "post",
+        body: JSON.stringify(form),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await res.json();
+      setPets([...pets, data]);
+      setpetPage({});
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const openLoginModal = () => {
@@ -58,9 +115,12 @@ const ContactoMascotaProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getHappyEndings();
     getPets();
   }, []);
+
+  useEffect(() => {
+    getLastPets();
+  }, [pets]);
 
   useEffect(() => {
     let datauser = JSON.parse(localStorage.getItem("userInfo"));
@@ -72,12 +132,17 @@ const ContactoMascotaProvider = ({ children }) => {
   return (
     <ContactoMascotaContext.Provider
       value={{
-        happyEndings,
         isLoginOpen,
         openLoginModal,
         closeLoginModal,
         pets,
         user,
+        reportPet,
+        lastPets,
+        petsOfUser,
+        getPet,
+        petPage,
+        setpetPage,
       }}
     >
       {children}
