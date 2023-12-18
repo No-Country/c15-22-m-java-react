@@ -19,13 +19,14 @@ export const AppRouter = () => {
       <Route path="/auth/login" element={<Login />} />
       <Route path="/auth/register" element={<Register />} />
       <Route path="/finalesfelices" element={<HappyEndings />} />
+      <Route path="/mascotasperdidas" element={<LostPetPage />} />
+      <Route path="/mascotasencontradas" element={<FoundPetPage />} />
       <Route path="/" index element={<Home />} />
 
       <Route element={<PrivateRoutes />}>
         <Route path="/*" element={<Navigate to="/" />} />
         <Route path="/auth/dashboard" element={<DashboardPage />} />
         <Route path="/auth/reportarmascota" element={<ReportPetPage />} />
-        <Route path="/auth/mascotaperdida" element={<LostPetPage />} />
       </Route>
 
       <Route path="*" element={<Page404 />} />

@@ -120,13 +120,13 @@ const Header = () => {
                 {isReportDropdownOpen && (
                   <div className="absolute mt-2 w-48 bg-white rounded-md shadow-lg">
                     <Link
-                      to={"/auth/mascotaperdida"}
+                      to={"/mascotasperdidas"}
                       className="block px-4 py-2 text-sm text-gray-500 hover:bg-gray-100"
                     >
                       Mascota perdida
                     </Link>
                     <Link
-                      to={"/auth/mascotaencontrada"}
+                      to={"/mascotasencontradas"}
                       className="block px-4 py-2 text-sm text-gray-500 hover:bg-gray-100"
                     >
                       Encontré una mascota
