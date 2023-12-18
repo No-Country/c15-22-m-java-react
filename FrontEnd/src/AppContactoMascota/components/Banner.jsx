@@ -1,5 +1,4 @@
 import { useContactoMascota } from "../../hooks/useContactoMascota";
-import { getImageOfBase64 } from "../helpers/getImageOfBase64";
 import { LastPetsCards } from "./LastPetsCards";
 
 const Banner = () => {
@@ -17,11 +16,6 @@ const Banner = () => {
         Últimas mascotas <br /> reportadas
       </h1>
       <div className="grid gap-10 justify-center grid-cols-[repeat(auto-fit,_260px)] max-w-[1240px] mx-auto items-center">
-        {/* ----> Acá va renderizar las ultimas mascotas reportadas <------  */}
-
-        {/* <img className="max-h-[800px]" src="/images/nua.png" alt="" />
-        <img className=" max-h-[800px]" src="/images/nua.png" alt="" />
-        <img className=" max-h-[800px]" src="/images/nua.png" alt="" /> */}
         {renderPets()}
       </div>
     </section>

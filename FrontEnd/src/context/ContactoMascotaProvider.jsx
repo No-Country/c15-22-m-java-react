@@ -8,6 +8,7 @@ const ContactoMascotaProvider = ({ children }) => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [user, setUser] = useState({});
   const [lastPets, setLastPets] = useState([]);
+  const [petsOfUser, setPetsOfUser] = useState([]);
 
   const getPets = async () => {
     const url = `${
@@ -64,6 +65,7 @@ const ContactoMascotaProvider = ({ children }) => {
       const res = await fetch(url, requestOptions);
       const data = await res.json();
       setUser(data);
+      setPetsOfUser(data.pets);
     } catch (error) {
       console.error(error);
     }
@@ -131,6 +133,7 @@ const ContactoMascotaProvider = ({ children }) => {
         user,
         reportPet,
         lastPets,
+        petsOfUser,
       }}
     >
       {children}

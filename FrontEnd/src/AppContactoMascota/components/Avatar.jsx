@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useContactoMascota } from "../../hooks/useContactoMascota";
 import { useUserInfo } from "../../store/userInfo";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Avatar = () => {
   const { user } = useContactoMascota();
@@ -50,12 +50,12 @@ const Avatar = () => {
           aria-labelledby="avatarButton"
         >
           <li>
-            <a
-              href="#"
+            <Link
+              to={"/auth/dashboard"}
               className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
             >
               Dashboard
-            </a>
+            </Link>
           </li>
           <li>
             <a
