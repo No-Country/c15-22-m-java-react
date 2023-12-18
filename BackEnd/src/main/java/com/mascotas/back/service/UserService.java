@@ -1,26 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package com.mascotas.back.service;
 
-import com.mascotas.back.dto.UserResponseDto;
 import com.mascotas.back.model.User;
 
-import java.util.List;
 import java.util.Optional;
 
-
 public interface UserService {
-    public List<UserResponseDto> getUsers();
 
-    public User createUser(User user);
+    Optional<User> findUserByEmail(String email);
 
-    public void deleteUser(Long id);
+    boolean existsByEmail(String email); // TODO. Para recuperar la contraseña
 
-    public UserResponseDto findUserById(Long id);
-
-    public Optional<User> findUserByEmail(String email);
-
-    public boolean existsByEmail(String email);
+    boolean existsById(Long user_id);
 }

@@ -14,15 +14,20 @@ import java.util.List;
 @NoArgsConstructor
 public class UserResponseDto implements Serializable {
 
+    private Long id;
     private String name;
     private String lastName;
+    private String email;
     private String phone;
     private List<PetDto> pets;
 
     public UserResponseDto(User user) {
-        this.name= user.getName();
+        this.id = user.getId();
+        this.name = user.getName();
         this.lastName = user.getLastName();
+        this.email = user.getEmail();
         this.phone = user.getPhone();
         this.pets = user.getPets().stream().map(PetDto::new).toList();
     }
+
 }
