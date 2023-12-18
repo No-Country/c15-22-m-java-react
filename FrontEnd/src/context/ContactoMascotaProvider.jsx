@@ -99,7 +99,7 @@ const ContactoMascotaProvider = ({ children }) => {
       });
 
       const data = await res.json();
-      console.log(data);
+      setPets([...pets, data]);
       setpetPage({});
     } catch (error) {
       console.error(error);
@@ -116,8 +116,11 @@ const ContactoMascotaProvider = ({ children }) => {
 
   useEffect(() => {
     getPets();
-    getLastPets();
   }, []);
+
+  useEffect(() => {
+    getLastPets();
+  }, [pets]);
 
   useEffect(() => {
     let datauser = JSON.parse(localStorage.getItem("userInfo"));
@@ -139,7 +142,7 @@ const ContactoMascotaProvider = ({ children }) => {
         petsOfUser,
         getPet,
         petPage,
-        setpetPage
+        setpetPage,
       }}
     >
       {children}

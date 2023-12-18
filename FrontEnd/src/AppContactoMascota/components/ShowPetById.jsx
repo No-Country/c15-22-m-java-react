@@ -39,11 +39,11 @@ export const ShowPetById = ({ pet }) => {
         </h1>
 
         <div>
-          <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
+          <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
             Características:
           </h2>
 
-          <ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
+          <ul className="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
             <li>Edad: {age} años</li>
             <li>Descripción: {description}</li>
             <li>Raza: {race}</li>
@@ -55,11 +55,11 @@ export const ShowPetById = ({ pet }) => {
         </div>
 
         <div>
-          <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
+          <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
             Propietario:
           </h2>
 
-          <ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
+          <ul className="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
             <li>
               {owner} {lastname}
             </li>
