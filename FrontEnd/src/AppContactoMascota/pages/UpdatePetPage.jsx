@@ -17,18 +17,17 @@ export const UpdatePetPage = () => {
       getImageOfBase64(imageBase64, (imagen) => {
         setCurrentImage(imagen);
       });
-      
     }
   }, [petPage]);
 
   return (
     <Layout>
-      <main className="max-w-[1200px] mx-auto bg-orange mb-4">
+      <main className="max-w-screen-xl mx-auto px-6 mb-8">
         <h1 className="text-3xl md:text-5xl font-bold text-center py-6">
           Actualizar reporte de mascota
         </h1>
 
-        <section className="grid grid-cols-1 md:grid-cols-2">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {currentImage && (
             <img
               src={currentImage}

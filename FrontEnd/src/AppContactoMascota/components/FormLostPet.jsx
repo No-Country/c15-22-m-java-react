@@ -30,6 +30,14 @@ export const FormLostPet = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (description.length < 10 || description > 10000) {
+      toast.error("La descripción debe tener de 10 a 10000 caracteres", {
+        duration: 4000,
+      });
+      return;
+    }
+
     formState.user_id = Number(user.id);
 
     toBase64(fileInputValue, (base64String) => {

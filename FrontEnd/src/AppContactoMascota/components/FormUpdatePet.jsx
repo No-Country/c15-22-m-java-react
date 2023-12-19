@@ -34,8 +34,12 @@ const FormUpdatePet = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    console.log(formState);
+
     if (description.length < 10 || description > 10000) {
-      toast.error("La descripción debe tener de 10 a 10000 caracteres", { duration: 4000 });
+      toast.error("La descripción debe tener de 10 a 10000 caracteres", {
+        duration: 4000,
+      });
       return;
     }
 
@@ -56,7 +60,7 @@ const FormUpdatePet = () => {
 
   return (
     <form className="w-96 mx-auto" onSubmit={handleSubmit}>
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="mb-5">
         <label
           htmlFor="email"
@@ -184,7 +188,6 @@ const FormUpdatePet = () => {
           accept=".jpg, .png, .svg"
           name="image"
           onChange={handleFileInputChange}
-          required
         />
         <p
           className="mt-1 text-sm text-gray-500 dark:text-gray-300"

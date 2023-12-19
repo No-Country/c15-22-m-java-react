@@ -10,6 +10,7 @@ const ContactoMascotaProvider = ({ children }) => {
   const [petsOfUser, setPetsOfUser] = useState([]);
   const [petPage, setpetPage] = useState({});
   const [petActive, setPetActive] = useState({});
+  const [imagePet, setImagePet] = useState({});
 
   const getPets = async () => {
     const url = `${
@@ -108,6 +109,38 @@ const ContactoMascotaProvider = ({ children }) => {
     }
   };
 
+  const updateImagePet = async (image, id) => {
+    try {
+      let {
+        state: {
+          user: { token },
+        },
+      } = JSON.parse(localStorage.getItem("userInfo"));
+
+      if (!token) {
+        throw new Error("No se pudo obtener el token del usuario.");
+      }
+
+      let url = `${import.meta.env.VITE_API_BACKEND}/api/v1/image/${id}`;
+
+      const res = await fetch(url, {
+        method: "put",
+        body: JSON.stringify({ imageBase64: image }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log(res);
+
+      //const data = await res.json();
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const onUpdatePet = async (form) => {
     try {
       let {
@@ -133,8 +166,16 @@ const ContactoMascotaProvider = ({ children }) => {
 
       const data = await res.json();
 
-      setPets([...pets, data]);
-      
+      let updatePets = pets.map((pet) => {
+        if (pet.id === data.id) {
+          return data;
+        }
+        return pet;
+      });
+
+      updateImagePet(form.image, imagePet?.image_id);
+
+      //setPets(updatePets);
       getUser();
       setpetPage({});
     } catch (error) {
@@ -213,6 +254,7 @@ const ContactoMascotaProvider = ({ children }) => {
         petActive,
         setPetActive,
         onUpdatePet,
+        setImagePet,
       }}
     >
       {children}

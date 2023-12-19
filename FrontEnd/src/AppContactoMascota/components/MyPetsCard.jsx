@@ -4,8 +4,9 @@ import { useContactoMascota } from "../../hooks/useContactoMascota";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 const MyPetsCard = ({ pet }) => {
-  const { onDeletePet, getPet } = useContactoMascota();
+  const { onDeletePet, getPet, setImagePet } = useContactoMascota();
   const [currentImage, setCurrentImage] = useState("");
+  const { images } = pet;
 
   const { name, race, state, id } = pet;
 
@@ -17,15 +18,13 @@ const MyPetsCard = ({ pet }) => {
   };
 
   useEffect(() => {
-    const { images } = pet;
-
     getImageOfBase64(images[0].imageBase64, (imagen) => {
       setCurrentImage(imagen);
     });
   }, [pet]);
 
   const updatePet = (id) => {
-    console.log(id);
+    setImagePet(images[0]);
     getPet(id);
   };
 

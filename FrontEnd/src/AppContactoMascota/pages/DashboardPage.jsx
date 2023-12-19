@@ -14,7 +14,7 @@ export const DashboardPage = () => {
 
   return (
     <Layout>
-      <main className="max-w-[1200px] mx-auto bg-orange">
+      <main className="max-w-screen-xl mx-auto px-6">
         <h1 className="text-3xl md:text-5xl font-bold text-center py-6">
           Mi Dashboard
         </h1>
@@ -28,7 +28,7 @@ export const DashboardPage = () => {
         <h2 className="text-xl md:text-3xl font-bold text-left">
           Mis mascotas reportadas
         </h2>
-        <div className="grid gap-10 justify-center grid-cols-[repeat(auto-fit,_260px)] max-w-[1240px] mx-auto my-6">
+        <div className="grid gap-6 justify-center my-4 grid-cols-[repeat(auto-fit,_260px)] max-w-[1200px] mx-auto">
           {petsOfUser.length > 0 ? (
             petsOfUser.map((pet) => <MyPetsCard key={pet.id} pet={pet} />)
           ) : (
