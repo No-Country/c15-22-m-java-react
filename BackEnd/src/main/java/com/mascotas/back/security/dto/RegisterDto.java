@@ -28,9 +28,8 @@ public class RegisterDto {
     private String email;
 
     @NotBlank(message = "password no puede ser nulo o vacío")
-    @Pattern(regexp = "\\d{8,}") // Solo permite 8 dígitos como mínimo.
+    @Pattern(regexp = "[a-zA-Z0-9]{8,}") // Solo permite 8 dígitos como mínimo.
     private String password;
-
     @NotBlank(message = "rol no puede ser nulo o vacío")
     private String rol; // TODO. No debería ser de tipo RoleUser ??? | Output error with data invalid: "No enum constant com.mascotas.back.enums.RoleUser.sadsada"
 }

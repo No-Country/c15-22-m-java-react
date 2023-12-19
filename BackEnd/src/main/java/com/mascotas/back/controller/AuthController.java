@@ -1,21 +1,16 @@
 package com.mascotas.back.controller;
 
+
 import com.mascotas.back.security.dto.AuthResponse;
 import com.mascotas.back.security.dto.LoginDto;
 import com.mascotas.back.security.dto.RegisterDto;
-
 import com.mascotas.back.security.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 @RequestMapping("/auth")
@@ -24,24 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AuthController {
 
     private final AuthService authService;
-    
-    @Autowired
-    private JavaMailSender mail;
-    
-    @GetMapping("enviar")
-    public void enviarCorreo(){
-        SimpleMailMessage email = new SimpleMailMessage();
-        email.setTo("jean.yantas@gmail.com");
-        email.setFrom("ramon.jose.cruz187@gmail.com");
-        email.setSubject("Mensaje de prueba 1");
-        email.setText("mensaje de prueba");
-        
-        mail.send(email);
-        
-       
-    }
-    
-   
+
     @PostMapping("login")
     public ResponseEntity<AuthResponse> login(@RequestBody @Valid LoginDto datos) {
         try {
