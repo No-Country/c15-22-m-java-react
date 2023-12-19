@@ -1,16 +1,19 @@
-import { useState } from "react";
-import useForm from "../hooks/useForm";
-import { toBase64 } from "../helpers/toBase64";
-import { useContactoMascota } from "../../hooks/useContactoMascota";
 import toast, { Toaster } from "react-hot-toast";
+import { useContactoMascota } from "../../hooks/useContactoMascota";
+import useForm from "../hooks/useForm";
+import { useEffect } from "react";
+import { toBase64 } from "../helpers/toBase64";
+import { useState } from "react";
 
-export const FormLostPet = () => {
-  const { reportPet, user } = useContactoMascota();
+const FormUpdatePet = () => {
+  const { petPage, onUpdatePet, user } = useContactoMascota();
   const [fileInputValue, setFileInputValue] = useState("");
+
   let {
     formState: { name, description, type, race, age, state, image },
     formState,
     onInputChange,
+    setFormState,
     onResetForm,
   } = useForm({
     name: "",
@@ -30,19 +33,29 @@ export const FormLostPet = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    formState.user_id = Number(user.id);
 
+    if (description.length < 10 || description > 10000) {
+      toast.error("La descripción debe tener de 10 a 10000 caracteres", { duration: 4000 });
+      return;
+    }
+
+    formState.user_id = Number(user.id);
     toBase64(fileInputValue, (base64String) => {
       formState.image = base64String;
-      reportPet(formState);
+      onUpdatePet(formState);
     });
 
-    toast.success("Mascota reportada", { duration: 4000 });
-    onResetForm();
+    toast.success("Reporte de mascota actualizada", { duration: 4000 });
   };
 
+  useEffect(() => {
+    if (Object.values(petPage).length > 0) {
+      setFormState({ ...petPage });
+    }
+  }, [petPage]);
+
   return (
-    <form className="max-w-lg mx-auto" onSubmit={handleSubmit}>
+    <form className="w-96 mx-auto" onSubmit={handleSubmit}>
       <Toaster position="top-right" reverseOrder={false} />
       <div className="mb-5">
         <label
@@ -71,10 +84,12 @@ export const FormLostPet = () => {
         <textarea
           name="description"
           id="description_id"
-          value={description}
-          onChange={onInputChange}
           cols="30"
           rows="10"
+          minLength="10"
+          maxLength="10000"
+          value={description}
+          onChange={onInputChange}
           required
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-300 focus:border-orange-400 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-300 dark:focus:border-orange-300"
         ></textarea>
@@ -188,3 +203,5 @@ export const FormLostPet = () => {
     </form>
   );
 };
+
+export default FormUpdatePet;

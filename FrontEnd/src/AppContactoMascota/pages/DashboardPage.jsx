@@ -1,7 +1,7 @@
 import { useContactoMascota } from "../../hooks/useContactoMascota";
 import Layout from "../../ui/Layout";
 import imgcontactomascota from "../../../public/images/contactoMascota.png";
-import PetCard from "../components/PetCard";
+import MyPetsCard from "../components/MyPetsCard";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -28,9 +28,10 @@ export const DashboardPage = () => {
         <h2 className="text-xl md:text-3xl font-bold text-left">
           Mis mascotas reportadas
         </h2>
-        <div className="grid gap-10 justify-center grid-cols-[repeat(auto-fit,_260px)] max-w-[1240px] mx-auto items-center">
-          {petsOfUser.length >
-          0 ? /* petsOfUser.map((pet) => <PetCard key={pet.name} pet={pet} />) */ null : (
+        <div className="grid gap-10 justify-center grid-cols-[repeat(auto-fit,_260px)] max-w-[1240px] mx-auto my-6">
+          {petsOfUser.length > 0 ? (
+            petsOfUser.map((pet) => <MyPetsCard key={pet.id} pet={pet} />)
+          ) : (
             <div className="my-4">
               <img
                 src={imgcontactomascota}

@@ -9,6 +9,7 @@ const ContactoMascotaProvider = ({ children }) => {
   const [lastPets, setLastPets] = useState([]);
   const [petsOfUser, setPetsOfUser] = useState([]);
   const [petPage, setpetPage] = useState({});
+  const [petActive, setPetActive] = useState({});
 
   const getPets = async () => {
     const url = `${
@@ -100,7 +101,72 @@ const ContactoMascotaProvider = ({ children }) => {
 
       const data = await res.json();
       setPets([...pets, data]);
+      getUser();
       setpetPage({});
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const onUpdatePet = async (form) => {
+    try {
+      let {
+        state: {
+          user: { token },
+        },
+      } = JSON.parse(localStorage.getItem("userInfo"));
+
+      if (!token) {
+        throw new Error("No se pudo obtener el token del usuario.");
+      }
+
+      let url = `${import.meta.env.VITE_API_BACKEND}/api/v1/pet`;
+
+      const res = await fetch(url, {
+        method: "put",
+        body: JSON.stringify(form),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await res.json();
+
+      setPets([...pets, data]);
+      
+      getUser();
+      setpetPage({});
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const onDeletePet = async (id) => {
+    try {
+      let {
+        state: {
+          user: { token },
+        },
+      } = JSON.parse(localStorage.getItem("userInfo"));
+
+      if (!token) {
+        throw new Error("No se pudo obtener el token del usuario.");
+      }
+
+      setPetsOfUser(petsOfUser.filter((pet) => pet.id !== id));
+
+      let url = `${import.meta.env.VITE_API_BACKEND}/api/v1/pet/${id}`;
+
+      const res = await fetch(url, {
+        method: "delete",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      await res.json();
     } catch (error) {
       console.error(error);
     }
@@ -143,6 +209,10 @@ const ContactoMascotaProvider = ({ children }) => {
         getPet,
         petPage,
         setpetPage,
+        onDeletePet,
+        petActive,
+        setPetActive,
+        onUpdatePet,
       }}
     >
       {children}
