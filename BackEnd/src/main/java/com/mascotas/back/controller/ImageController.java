@@ -29,7 +29,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1")
-@CrossOrigin(origins = "localhost:5173")
+@CrossOrigin (origins="http://localhost:5173")
 public class ImageController {
 
     private final ImageService imageService;
