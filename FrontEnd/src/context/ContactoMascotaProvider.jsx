@@ -134,7 +134,7 @@ const ContactoMascotaProvider = ({ children }) => {
 
       console.log(res);
 
-      //const data = await res.json();
+      const data = await res.json();
       console.log(data);
     } catch (error) {
       console.error(error);
@@ -164,7 +164,13 @@ const ContactoMascotaProvider = ({ children }) => {
         },
       });
 
+      
+      if (!form.image.imageBase64) {
+        updateImagePet(form.image, imagePet?.image_id);
+      }
+      
       const data = await res.json();
+      data.image = form.image;
 
       let updatePets = pets.map((pet) => {
         if (pet.id === data.id) {
@@ -173,9 +179,8 @@ const ContactoMascotaProvider = ({ children }) => {
         return pet;
       });
 
-      updateImagePet(form.image, imagePet?.image_id);
-
-      //setPets(updatePets);
+      
+      setPets(updatePets);
       getUser();
       setpetPage({});
     } catch (error) {

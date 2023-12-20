@@ -4,10 +4,12 @@ import useForm from "../hooks/useForm";
 import { useEffect } from "react";
 import { toBase64 } from "../helpers/toBase64";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const FormUpdatePet = () => {
   const { petPage, onUpdatePet, user } = useContactoMascota();
   const [fileInputValue, setFileInputValue] = useState("");
+  
 
   let {
     formState: { name, description, type, race, age, state, image },
@@ -44,10 +46,14 @@ const FormUpdatePet = () => {
     }
 
     formState.user_id = Number(user.id);
-    toBase64(fileInputValue, (base64String) => {
-      formState.image = base64String;
+    if (fileInputValue !== "") {
+      toBase64(fileInputValue, (base64String) => {
+        formState.image = base64String;
+        onUpdatePet(formState);
+      });
+    } else {
       onUpdatePet(formState);
-    });
+    }
 
     toast.success("Reporte de mascota actualizada", { duration: 4000 });
   };
@@ -201,7 +207,7 @@ const FormUpdatePet = () => {
         type="submit"
         className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
       >
-        Reportar
+        Actualizar reporte
       </button>
     </form>
   );
