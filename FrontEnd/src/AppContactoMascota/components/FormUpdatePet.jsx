@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const FormUpdatePet = () => {
   const { petPage, onUpdatePet, user } = useContactoMascota();
   const [fileInputValue, setFileInputValue] = useState("");
-  
+  const navigate = useNavigate();
 
   let {
     formState: { name, description, type, race, age, state, image },
@@ -36,8 +36,6 @@ const FormUpdatePet = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(formState);
-
     if (description.length < 10 || description > 10000) {
       toast.error("La descripción debe tener de 10 a 10000 caracteres", {
         duration: 4000,
@@ -56,6 +54,10 @@ const FormUpdatePet = () => {
     }
 
     toast.success("Reporte de mascota actualizada", { duration: 4000 });
+
+    setTimeout(() => {
+      navigate("/auth/dashboard");
+    }, 1000);
   };
 
   useEffect(() => {
