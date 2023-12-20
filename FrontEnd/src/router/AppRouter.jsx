@@ -8,6 +8,7 @@ import {
   LostPetPage,
   PetPage,
   ReportPetPage,
+  UpdatePetPage,
 } from "../AppContactoMascota/pages";
 import Login from "../AppContactoMascota/components/Login";
 import Register from "../AppContactoMascota/components/Register";
@@ -29,6 +30,7 @@ export const AppRouter = () => {
         <Route path="/*" element={<Navigate to="/" />} />
         <Route path="/auth/dashboard" element={<DashboardPage />} />
         <Route path="/auth/reportarmascota" element={<ReportPetPage />} />
+        <Route path="/auth/actualizarmascota" element={<UpdatePetPage />} />
       </Route>
 
       <Route path="*" element={<Page404 />} />

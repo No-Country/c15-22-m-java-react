@@ -25,7 +25,7 @@ export const FoundPetPage = () => {
     <Layout>
       <main className="max-w-screen-xl mx-auto">
         <h1 className="text-3xl md:text-5xl font-bold text-center py-6">
-          Mascotas perdidas
+          Mascotas encontradas
         </h1>
         <section className="grid gap-6 justify-center m-0 grid-cols-[repeat(auto-fit,_260px)] max-w-[1200px] mx-auto mb-8">
           {renderFoundPets()}

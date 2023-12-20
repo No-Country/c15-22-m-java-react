@@ -1,16 +1,21 @@
-import { useState } from "react";
-import useForm from "../hooks/useForm";
-import { toBase64 } from "../helpers/toBase64";
-import { useContactoMascota } from "../../hooks/useContactoMascota";
 import toast, { Toaster } from "react-hot-toast";
+import { useContactoMascota } from "../../hooks/useContactoMascota";
+import useForm from "../hooks/useForm";
+import { useEffect } from "react";
+import { toBase64 } from "../helpers/toBase64";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export const FormLostPet = () => {
-  const { reportPet, user } = useContactoMascota();
+const FormUpdatePet = () => {
+  const { petPage, onUpdatePet, user } = useContactoMascota();
   const [fileInputValue, setFileInputValue] = useState("");
+  const navigate = useNavigate();
+
   let {
     formState: { name, description, type, race, age, state, image },
     formState,
     onInputChange,
+    setFormState,
     onResetForm,
   } = useForm({
     name: "",
@@ -39,19 +44,31 @@ export const FormLostPet = () => {
     }
 
     formState.user_id = Number(user.id);
+    if (fileInputValue !== "") {
+      toBase64(fileInputValue, (base64String) => {
+        formState.image = base64String;
+        onUpdatePet(formState);
+      });
+    } else {
+      onUpdatePet(formState);
+    }
 
-    toBase64(fileInputValue, (base64String) => {
-      formState.image = base64String;
-      reportPet(formState);
-    });
+    toast.success("Reporte de mascota actualizada", { duration: 4000 });
 
-    toast.success("Mascota reportada", { duration: 4000 });
-    onResetForm();
+    setTimeout(() => {
+      navigate("/auth/dashboard");
+    }, 2000);
   };
 
+  useEffect(() => {
+    if (Object.values(petPage).length > 0) {
+      setFormState({ ...petPage });
+    }
+  }, [petPage]);
+
   return (
-    <form className="max-w-lg mx-auto" onSubmit={handleSubmit}>
-      <Toaster position="top-right" reverseOrder={false} />
+    <form className="w-96 mx-auto" onSubmit={handleSubmit}>
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="mb-5">
         <label
           htmlFor="email"
@@ -79,10 +96,12 @@ export const FormLostPet = () => {
         <textarea
           name="description"
           id="description_id"
-          value={description}
-          onChange={onInputChange}
           cols="30"
           rows="10"
+          minLength="10"
+          maxLength="10000"
+          value={description}
+          onChange={onInputChange}
           required
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-300 focus:border-orange-400 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-300 dark:focus:border-orange-300"
         ></textarea>
@@ -177,7 +196,6 @@ export const FormLostPet = () => {
           accept=".jpg, .png, .svg"
           name="image"
           onChange={handleFileInputChange}
-          required
         />
         <p
           className="mt-1 text-sm text-gray-500 dark:text-gray-300"
@@ -191,8 +209,10 @@ export const FormLostPet = () => {
         type="submit"
         className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
       >
-        Reportar
+        Actualizar reporte
       </button>
     </form>
   );
 };
+
+export default FormUpdatePet;

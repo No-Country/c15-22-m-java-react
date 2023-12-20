@@ -17,6 +17,7 @@ const useForm = (initialForm = {}) => {
     ...formState,
     formState,
     onInputChange,
+    setFormState,
     onResetForm,
   };
 };
