@@ -57,7 +57,7 @@ const FormUpdatePet = () => {
 
     setTimeout(() => {
       navigate("/auth/dashboard");
-    }, 1000);
+    }, 2000);
   };
 
   useEffect(() => {

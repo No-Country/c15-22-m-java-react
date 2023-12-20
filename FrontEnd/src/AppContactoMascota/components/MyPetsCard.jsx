@@ -72,21 +72,58 @@ const MyPetsCard = ({ pet }) => {
         <p className="font-normal text-gray-700 dark:text-gray-400">
           Estado: {states[state]}
         </p>
-        <div className="flex justify-between text-white mt-4">
-          <Link
-            to={"/auth/actualizarmascota"}
-            className="bg-yellow-400 p-2 rounded-md"
-            onClick={() => updatePet(id)}
-          >
-            Actualizar
-          </Link>
-          <button
-            type="button"
-            className="bg-red-600 p-2 rounded-md"
-            onClick={() => deletePet(id)}
-          >
-            Eliminar
-          </button>
+        <div className="flex justify-between items-center mt-2">
+          <div className="flex">
+            <Link to={`/mascota/${id}`} className="bg-blue-400 p-2 rounded-md">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"
+                />
+              </svg>
+            </Link>
+          </div>
+          <div className="flex gap-1">
+            <Link
+              to={"/auth/actualizarmascota"}
+              className="bg-yellow-400 p-2 rounded-md"
+              onClick={() => updatePet(id)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M3 21v-4.25L16.2 3.575q.3-.275.663-.425t.762-.15q.4 0 .775.15t.65.45L20.425 5q.3.275.438.65T21 6.4q0 .4-.137.763t-.438.662L7.25 21zM17.6 7.8L19 6.4L17.6 5l-1.4 1.4z"
+                />
+              </svg>
+            </Link>
+            <button
+              type="button"
+              className="bg-red-600 p-2 rounded-md"
+              onClick={() => deletePet(id)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M9 3v1H4v2h1v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1V4h-5V3zm0 5h2v9H9zm4 0h2v9h-2z"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </article>

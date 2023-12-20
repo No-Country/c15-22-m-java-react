@@ -132,10 +132,11 @@ const ContactoMascotaProvider = ({ children }) => {
         },
       });
 
-      console.log(res);
+      
 
       const data = await res.json();
       console.log(data);
+      getUser();
     } catch (error) {
       console.error(error);
     }
