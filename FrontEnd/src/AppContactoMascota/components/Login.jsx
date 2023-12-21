@@ -17,7 +17,6 @@ const Login = () => {
       .post("/auth/login", data)
       .then(({ data }) => {
         login(data);
-        alert("Bienvenido");
         navigate("/");
       })
       .catch((err) => console.log(err));
@@ -81,11 +80,8 @@ const Login = () => {
                         >
                           Iniciar sesión
                         </button>
-
-                      
                       </div>
 
-                   
                       <div className="flex items-center justify-between pb-6">
                         <p className="mb-0 mr-2">No tienes una cuenta?</p>
                         <Link to={"/auth/register"}>
@@ -100,8 +96,6 @@ const Login = () => {
                     </form>
                   </div>
                 </div>
-
-             
 
                 <div
                   className="flex justify-center flex-col items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none mt-9"

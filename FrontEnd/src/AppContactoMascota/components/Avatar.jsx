@@ -4,7 +4,7 @@ import { useUserInfo } from "../../store/userInfo";
 import { Link, useNavigate } from "react-router-dom";
 
 const Avatar = () => {
-  const { user } = useContactoMascota();
+  const { user, setUser } = useContactoMascota();
   const { name, lastName, phone } = user;
   const logout = useUserInfo((state) => state.logout);
   const [isDropdownVisible, setDropdownVisible] = useState(false);
@@ -17,6 +17,8 @@ const Avatar = () => {
   const handleLogout = () => {
     logout();
     navigate("/");
+    console.log(user);
+    setUser({});
   };
 
   return (
