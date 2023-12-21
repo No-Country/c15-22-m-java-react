@@ -2,10 +2,12 @@ import { useState } from "react";
 import { useContactoMascota } from "../../hooks/useContactoMascota";
 import { useUserInfo } from "../../store/userInfo";
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
-const Avatar = () => {
-  const { user } = useContactoMascota();
-  const { name, lastName, phone } = user;
+const Avatar = ({ currentUser }) => {
+  const valueStorage = JSON.parse(localStorage.getItem("userInfo")) ?? {};
+  const { setUser } = useContactoMascota();
+  const { name, lastName, phone } = currentUser;
   const logout = useUserInfo((state) => state.logout);
   const [isDropdownVisible, setDropdownVisible] = useState(false);
 
@@ -15,21 +17,25 @@ const Avatar = () => {
   };
 
   const handleLogout = () => {
-    logout();
     navigate("/");
+    logout();
   };
+
+  useEffect(() => {
+    if (valueStorage.state.user.token === "") {
+      setUser({});
+    }
+  }, [valueStorage]);
 
   return (
     <div>
-      {/* Avatar Button */}
-
       <div
         className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600"
         onClick={toggleDropdown}
       >
         <span className="font-medium text-gray-600 dark:text-gray-300">
-          {name.at()}
-          {lastName.at()}
+          {name?.at()}
+          {lastName?.at()}
         </span>
       </div>
 

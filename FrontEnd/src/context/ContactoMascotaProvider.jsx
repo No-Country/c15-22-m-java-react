@@ -55,6 +55,7 @@ const ContactoMascotaProvider = ({ children }) => {
       } = JSON.parse(localStorage.getItem("userInfo"));
 
       if (!token) {
+        
         throw new Error("No se pudo obtener el token del usuario.");
       }
       let url = `${import.meta.env.VITE_API_BACKEND}/user/profile`;
@@ -132,8 +133,6 @@ const ContactoMascotaProvider = ({ children }) => {
         },
       });
 
-      
-
       const data = await res.json();
       console.log(data);
       getUser();
@@ -165,11 +164,10 @@ const ContactoMascotaProvider = ({ children }) => {
         },
       });
 
-      
       if (!form.image.imageBase64) {
         updateImagePet(form.image, imagePet?.image_id);
       }
-      
+
       const data = await res.json();
       data.image = form.image;
 
@@ -180,7 +178,6 @@ const ContactoMascotaProvider = ({ children }) => {
         return pet;
       });
 
-      
       setPets(updatePets);
       getUser();
       setpetPage({});
@@ -235,13 +232,6 @@ const ContactoMascotaProvider = ({ children }) => {
     getLastPets();
   }, [pets]);
 
-  useEffect(() => {
-    let datauser = JSON.parse(localStorage.getItem("userInfo"));
-    if (Object.values(datauser).length > 0) {
-      getUser();
-    }
-  }, []);
-
   return (
     <ContactoMascotaContext.Provider
       value={{
@@ -261,6 +251,8 @@ const ContactoMascotaProvider = ({ children }) => {
         setPetActive,
         onUpdatePet,
         setImagePet,
+        setUser,
+        getUser,
       }}
     >
       {children}

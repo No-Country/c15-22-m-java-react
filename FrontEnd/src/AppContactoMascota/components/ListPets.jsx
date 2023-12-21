@@ -15,9 +15,7 @@ const ListPets = () => {
         Mascotas
       </h2>
       <section className="grid gap-6 justify-center m-0 grid-cols-[repeat(auto-fit,_260px)] max-w-[1200px] mx-auto bg-orange">
-        {pets.map((pet) => (
-          <PetCard key={pet.id} pet={pet} />
-        ))}
+        {pets && pets.map((pet) => <PetCard key={pet.id} pet={pet} />)}
       </section>
     </main>
   );
