@@ -15,7 +15,7 @@ const ContactoMascotaProvider = ({ children }) => {
   const getPets = async () => {
     const url = `${
       import.meta.env.VITE_API_BACKEND
-    }/api/v1/pets?size10&page=0&sort=name,asc`;
+    }/api/v1/pets?size10&page=0&sort=id,desc`;
     try {
       const res = await fetch(url);
       const data = await res.json();
@@ -55,6 +55,7 @@ const ContactoMascotaProvider = ({ children }) => {
       } = JSON.parse(localStorage.getItem("userInfo"));
 
       if (!token) {
+        
         throw new Error("No se pudo obtener el token del usuario.");
       }
       let url = `${import.meta.env.VITE_API_BACKEND}/user/profile`;
@@ -230,13 +231,6 @@ const ContactoMascotaProvider = ({ children }) => {
   useEffect(() => {
     getLastPets();
   }, [pets]);
-
-  useEffect(() => {
-    let datauser = JSON.parse(localStorage.getItem("userInfo"));
-    if (Object.values(datauser).length > 0) {
-      getUser();
-    }
-  }, []);
 
   return (
     <ContactoMascotaContext.Provider

@@ -15,8 +15,7 @@ export const useUserInfo = create(
         set({ user: infoLogin });
       },
       logout: () => {
-        set({user: INITIAL_STATE})
-        localStorage.removeItem("userInfo")
+        set({ user: INITIAL_STATE });
       }
     }),
     {

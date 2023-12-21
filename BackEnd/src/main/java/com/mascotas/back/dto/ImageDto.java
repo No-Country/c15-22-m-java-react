@@ -4,6 +4,7 @@ import com.mascotas.back.model.Image;
 import java.io.Serializable;
 import java.util.Set;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ImageDto implements Serializable {
 
+    @NotEmpty(message = "image no puede ser nulo o vacío")
     public byte[] imageBase64;
 
     public ImageDto(Image image) {

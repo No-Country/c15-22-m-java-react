@@ -2,7 +2,6 @@ import Layout from "../../ui/Layout";
 import Banner from "../components/Banner";
 import ListPets from "../components/ListPets";
 import SectionReport from "../components/SectionReport";
-import Testimonial from "../components/Testimonial";
 
 export const Home = () => {
   return (
@@ -10,7 +9,6 @@ export const Home = () => {
       <Banner />
       <SectionReport />
       <ListPets />
-      <Testimonial />
     </Layout>
   );
 };
