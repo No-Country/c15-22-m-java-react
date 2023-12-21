@@ -46,12 +46,10 @@ const Login = () => {
                           alt="logo"
                         /> */}
                         <h4 className="mb-8 mt-1 pb-1 text-2xl font-semibold">
-                          Estamos{" "}
-                          <span className="text-red-primary">felices</span> de
-                          volverte a ver
+                        Iniciar Sesión
                         </h4>
                       </div>
-                      <div className="flex justify-between mx-5 gap-5">
+                      {/* <div className="flex justify-between mx-5 gap-5">
                         <button className="flex flex-wrap justify-center w-full border border-gray-300 hover:border-gray-500 px-2 py-1.5 rounded-md">
                           <img
                             className="w-5 mr-2"
@@ -67,10 +65,7 @@ const Login = () => {
                           />
                           Iniciar sesión con Facebook
                         </button>
-                      </div>
-                      <p className="mx-auto flex my-4 justify-center">
-                        o iniciar sesión con credenciales
-                      </p>
+                      </div> */}
 
                       <form onSubmit={handleSubmit} className=" mx-5">
                         {/* <p className="mb-4 font-montserrat font-light ">Por favor, ingrese a su cuenta</p> */}
