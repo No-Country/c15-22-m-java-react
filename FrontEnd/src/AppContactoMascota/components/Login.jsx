@@ -49,23 +49,6 @@ const Login = () => {
                         Iniciar Sesión
                         </h4>
                       </div>
-                      {/* <div className="flex justify-between mx-5 gap-5">
-                        <button className="flex flex-wrap justify-center w-full border border-gray-300 hover:border-gray-500 px-2 py-1.5 rounded-md">
-                          <img
-                            className="w-5 mr-2"
-                            src="https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA"
-                          />
-                          Iniciar sesión con Google
-                        </button>
-
-                        <button className="flex flex-wrap justify-center w-full border border-gray-300 hover:border-gray-500 px-2 py-1.5 rounded-md">
-                          <img
-                            className="w-5 mr-2"
-                            src="/images/facebook.png"
-                          />
-                          Iniciar sesión con Facebook
-                        </button>
-                      </div> */}
 
                       <form onSubmit={handleSubmit} className=" mx-5">
                         {/* <p className="mb-4 font-montserrat font-light ">Por favor, ingrese a su cuenta</p> */}
