@@ -1,6 +1,6 @@
 import axios from "axios";
 
 const axiosMascota = axios.create({
-  baseURL: "http://191.96.251.43:8181",
+  baseURL: "https://mascotas-i7v0.onrender.com",
 });
 export { axiosMascota };
