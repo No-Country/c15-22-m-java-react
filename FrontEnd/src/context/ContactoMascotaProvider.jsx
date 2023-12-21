@@ -15,7 +15,7 @@ const ContactoMascotaProvider = ({ children }) => {
   const getPets = async () => {
     const url = `${
       import.meta.env.VITE_API_BACKEND
-    }/api/v1/pets?size10&page=0&sort=name,asc`;
+    }/api/v1/pets?size10&page=0&sort=id,desc`;
     try {
       const res = await fetch(url);
       const data = await res.json();

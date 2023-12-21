@@ -10,6 +10,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target));
+    data.rol = "USER";
     console.log(data);
 
     axiosMascota
@@ -44,12 +45,10 @@ const Register = () => {
                           alt="logo"
                         /> */}
                         <h4 className="mb-8 mt-1 pb-1 text-2xl font-semibold">
-                          Estamos{" "}
-                          <span className="text-red-primary">felices</span> de
-                          volverte a ver
+                          Bienvenido
                         </h4>
                       </div>
-                      <div className="flex justify-between mx-5 gap-5">
+                      {/* <div className="flex justify-between mx-5 gap-5">
                         <button className="flex flex-wrap justify-center w-full border border-gray-300 hover:border-gray-500 px-2 py-1.5 rounded-md">
                           <img
                             className="w-5 mr-2"
@@ -65,9 +64,9 @@ const Register = () => {
                           />
                           Registrar con Facebook
                         </button>
-                      </div>
+                      </div> */}
                       <p className="mx-auto flex my-4 justify-center">
-                        o ingresa tus datos
+                        Ingresa tus datos
                       </p>
 
                       <form onSubmit={handleSubmit} className=" mx-5">
@@ -110,7 +109,7 @@ const Register = () => {
                             id="email"
                           ></input>
                         </div>
-                        <div className="grid  mb-4">
+                        {/* <div className="grid  mb-4">
                           <label htmlFor="">rol</label>
                           <input
                             type="text"
@@ -119,7 +118,7 @@ const Register = () => {
                             name="rol"
                             id="rol"
                           ></input>
-                        </div>
+                        </div> */}
 
                         {/* <!--Password input--> */}
                         <div className="grid  mb-2">
@@ -181,7 +180,7 @@ const Register = () => {
                         </div>
 
                         {/* <!--Register button--> */}
-                        <div className="flex items-center justify-between pb-6">
+                        {/* <div className="flex items-center justify-between pb-6">
                           <p className="mb-0 mr-2">No tienes una cuenta?</p>
                           <button
                             type="button"
@@ -189,7 +188,7 @@ const Register = () => {
                           >
                             Registrar
                           </button>
-                        </div>
+                        </div> */}
                       </form>
                     </div>
                   </div>

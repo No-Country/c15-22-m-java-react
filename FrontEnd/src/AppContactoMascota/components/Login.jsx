@@ -17,6 +17,7 @@ const Login = () => {
       .post("/auth/login", data)
       .then(({ data }) => {
         login(data);
+        alert("Bienvenido");
         navigate("/");
       })
       .catch((err) => console.log(err));
