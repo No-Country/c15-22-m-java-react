@@ -16,6 +16,7 @@ import Page404 from "../AppContactoMascota/pages/Page404";
 import PrivateRoutes from "../auth/PrivateRoutes";
 
 export const AppRouter = () => {
+  
   return (
     <Routes>
       <Route path="/auth/login" element={<Login />} />

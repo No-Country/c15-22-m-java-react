@@ -132,8 +132,6 @@ const ContactoMascotaProvider = ({ children }) => {
         },
       });
 
-      
-
       const data = await res.json();
       console.log(data);
       getUser();
@@ -165,11 +163,10 @@ const ContactoMascotaProvider = ({ children }) => {
         },
       });
 
-      
       if (!form.image.imageBase64) {
         updateImagePet(form.image, imagePet?.image_id);
       }
-      
+
       const data = await res.json();
       data.image = form.image;
 
@@ -180,7 +177,6 @@ const ContactoMascotaProvider = ({ children }) => {
         return pet;
       });
 
-      
       setPets(updatePets);
       getUser();
       setpetPage({});
@@ -261,6 +257,8 @@ const ContactoMascotaProvider = ({ children }) => {
         setPetActive,
         onUpdatePet,
         setImagePet,
+        setUser,
+        getUser,
       }}
     >
       {children}
