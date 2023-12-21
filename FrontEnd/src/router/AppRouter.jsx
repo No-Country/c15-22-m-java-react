@@ -15,7 +15,6 @@ import Register from "../AppContactoMascota/components/Register";
 import Page404 from "../AppContactoMascota/pages/Page404";
 import PrivateRoutes from "../auth/PrivateRoutes";
 import { useContactoMascota } from "../hooks/useContactoMascota";
-import { useUserInfo } from "../store/userInfo";
 import { useEffect, useState } from "react";
 
 export const AppRouter = () => {
