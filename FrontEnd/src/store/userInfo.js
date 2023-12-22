@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { useContactoMascota } from "../hooks/useContactoMascota";
 
 const INITIAL_STATE = {
   email: "",
@@ -13,6 +14,7 @@ export const useUserInfo = create(
       user: INITIAL_STATE,
       login: (infoLogin) => {
         set({ user: infoLogin });
+
       },
       logout: () => {
         set({ user: INITIAL_STATE });

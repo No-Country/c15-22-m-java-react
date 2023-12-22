@@ -3,10 +3,13 @@ import useForm from "../hooks/useForm";
 import { toBase64 } from "../helpers/toBase64";
 import { useContactoMascota } from "../../hooks/useContactoMascota";
 import toast, { Toaster } from "react-hot-toast";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export const FormLostPet = () => {
   const { reportPet, user } = useContactoMascota();
   const [fileInputValue, setFileInputValue] = useState("");
+  const navigate = useNavigate();
   let {
     formState: { name, description, type, race, age, state, image },
     formState,
@@ -45,7 +48,16 @@ export const FormLostPet = () => {
       reportPet(formState);
     });
 
-    toast.success("Mascota reportada", { duration: 4000 });
+    Swal.fire({
+      title: "Mascota reportada con éxito",
+      icon: "success",
+      confirmButtonColor: "#FF5A1F",
+      confirmButtonText: "Volver a mi dashboard",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/auth/dashboard");
+      }
+    });
     onResetForm();
   };
 
@@ -109,7 +121,6 @@ export const FormLostPet = () => {
           <option value="Gato">Gato</option>
           <option value="Otro">Otro</option>
         </select>
-
       </div>
       <div className="mb-5">
         <label
@@ -195,7 +206,7 @@ export const FormLostPet = () => {
 
       <button
         type="submit"
-        className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+        className="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
       >
         Reportar
       </button>
