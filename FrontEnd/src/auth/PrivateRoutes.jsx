@@ -4,7 +4,7 @@ import { Navigate, Outlet } from "react-router-dom";
 
 const PrivateRoutes = () => {
   const user = useUserInfo((state) => state.user);
-  console.log(user);
+
   if (user.token) {
     return <Outlet />;
   } else {

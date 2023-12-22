@@ -15,7 +15,7 @@ import Register from "../AppContactoMascota/components/Register";
 import Page404 from "../AppContactoMascota/pages/Page404";
 import PrivateRoutes from "../auth/PrivateRoutes";
 import { useContactoMascota } from "../hooks/useContactoMascota";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export const AppRouter = () => {
 <<<<<<< HEAD
@@ -28,9 +28,13 @@ export const AppRouter = () => {
     if (valueStorage) {
       getUser();
     }
+<<<<<<< HEAD
   }, [valueStorage]);
 
 >>>>>>> main
+=======
+  }, []);
+>>>>>>> dev
   return (
     <Routes>
       <Route path="/auth/login" element={<Login />} />
