@@ -63,14 +63,7 @@ const Avatar = ({ currentUser }) => {
               Dashboard
             </Link>
           </li>
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-            >
-              Ajustes
-            </a>
-          </li>
+         
         </ul>
         <div className="py-1">
           <button

@@ -1,6 +1,6 @@
 import { useContactoMascota } from "../../hooks/useContactoMascota";
 import Layout from "../../ui/Layout";
-import imgcontactomascota from "../../../public/images/contactoMascota.png";
+import imgcontactomascota from "/images/contactoMascota.png";
 import MyPetsCard from "../components/MyPetsCard";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
