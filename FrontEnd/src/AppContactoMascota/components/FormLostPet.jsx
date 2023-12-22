@@ -62,7 +62,7 @@ export const FormLostPet = () => {
   };
 
   return (
-    <form className="max-w-lg mx-auto" onSubmit={handleSubmit}>
+    <form className="max-w-xs md:max-w-xl mx-auto" onSubmit={handleSubmit}>
       <Toaster position="top-right" reverseOrder={false} />
       <div className="mb-5">
         <label
