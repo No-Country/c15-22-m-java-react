@@ -34,11 +34,10 @@ const PetCard = ({ pet }) => {
         />
       )}
       <div className="p-5">
-        <a href="#">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">
-            {name}
-          </h5>
-        </a>
+        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">
+          {name}
+        </h5>
+
         <p className="font-normal text-gray-700 dark:text-gray-400">
           Raza: {race}
         </p>
