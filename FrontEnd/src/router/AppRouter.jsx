@@ -14,8 +14,18 @@ import Login from "../AppContactoMascota/components/Login";
 import Register from "../AppContactoMascota/components/Register";
 import Page404 from "../AppContactoMascota/pages/Page404";
 import PrivateRoutes from "../auth/PrivateRoutes";
+import { useContactoMascota } from "../hooks/useContactoMascota";
+import { useEffect } from "react";
 
 export const AppRouter = () => {
+  const { getUser } = useContactoMascota();
+  let valueStorage = JSON.parse(localStorage.getItem("userInfo")) ?? {};
+
+  useEffect(() => {
+    if (valueStorage) {
+      getUser();
+    }
+  }, []);
   return (
     <Routes>
       <Route path="/auth/login" element={<Login />} />
