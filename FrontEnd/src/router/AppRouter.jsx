@@ -18,9 +18,6 @@ import { useContactoMascota } from "../hooks/useContactoMascota";
 import { useEffect } from "react";
 
 export const AppRouter = () => {
-<<<<<<< HEAD
-  
-=======
   const { getUser } = useContactoMascota();
   let valueStorage = JSON.parse(localStorage.getItem("userInfo")) ?? {};
 
@@ -28,13 +25,7 @@ export const AppRouter = () => {
     if (valueStorage) {
       getUser();
     }
-<<<<<<< HEAD
-  }, [valueStorage]);
-
->>>>>>> main
-=======
   }, []);
->>>>>>> dev
   return (
     <Routes>
       <Route path="/auth/login" element={<Login />} />
