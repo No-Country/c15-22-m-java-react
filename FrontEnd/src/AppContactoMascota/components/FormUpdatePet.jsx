@@ -67,7 +67,7 @@ const FormUpdatePet = () => {
   }, [petPage]);
 
   return (
-    <form className="w-96 mx-auto" onSubmit={handleSubmit}>
+    <form className="max-w-xs md:max-w-xl mx-auto" onSubmit={handleSubmit}>
       <Toaster position="top-center" reverseOrder={false} />
       <div className="mb-5">
         <label

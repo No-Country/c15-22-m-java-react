@@ -2,8 +2,10 @@ import { Link, useNavigate } from "react-router-dom";
 import Layout from "../../ui/Layout";
 import { axiosMascota } from "../../config/axios.config";
 import { useUserInfo } from "../../store/userInfo";
+import { useContactoMascota } from "../../hooks/useContactoMascota";
 
 const Login = () => {
+  const { getUser } = useContactoMascota();
   const login = useUserInfo((state) => state.login);
 
   const navigate = useNavigate();
@@ -18,6 +20,7 @@ const Login = () => {
       .then(({ data }) => {
         login(data);
         navigate("/");
+        getUser();
       })
       .catch((err) => console.log(err));
   };

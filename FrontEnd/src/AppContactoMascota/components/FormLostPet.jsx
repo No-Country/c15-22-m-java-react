@@ -3,11 +3,16 @@ import useForm from "../hooks/useForm";
 import { toBase64 } from "../helpers/toBase64";
 import { useContactoMascota } from "../../hooks/useContactoMascota";
 import toast, { Toaster } from "react-hot-toast";
+<<<<<<< HEAD
+=======
+import Swal from "sweetalert2";
+>>>>>>> main
 import { useNavigate } from "react-router-dom";
 
 export const FormLostPet = () => {
   const { reportPet, user } = useContactoMascota();
   const [fileInputValue, setFileInputValue] = useState("");
+  const navigate = useNavigate();
   let {
     formState: { name, description, type, race, age, state, image },
     formState,
@@ -53,6 +58,7 @@ export const FormLostPet = () => {
       reportPet(formState);
     });
 
+<<<<<<< HEAD
     toast.custom((t) => (
       <div
         className={`${
@@ -79,12 +85,29 @@ export const FormLostPet = () => {
         </div>
       </div>
     ));
+=======
+    Swal.fire({
+      title: "Mascota reportada con éxito",
+      icon: "success",
+      confirmButtonColor: "#FF5A1F",
+      confirmButtonText: "Volver a mi dashboard",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/auth/dashboard");
+      }
+    });
+>>>>>>> main
     onResetForm();
   };
 
   return (
+<<<<<<< HEAD
     <form className="max-w-lg mx-auto" onSubmit={handleSubmit}>
       <Toaster position="top-center" reverseOrder={false} />
+=======
+    <form className="max-w-xs md:max-w-xl mx-auto" onSubmit={handleSubmit}>
+      <Toaster position="top-right" reverseOrder={false} />
+>>>>>>> main
       <div className="mb-5">
         <label
           htmlFor="email"
@@ -227,7 +250,7 @@ export const FormLostPet = () => {
 
       <button
         type="submit"
-        className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+        className="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
       >
         Reportar
       </button>

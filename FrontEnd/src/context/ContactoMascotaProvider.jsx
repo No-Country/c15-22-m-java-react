@@ -15,7 +15,7 @@ const ContactoMascotaProvider = ({ children }) => {
   const getPets = async () => {
     const url = `${
       import.meta.env.VITE_API_BACKEND
-    }/api/v1/pets?size10&page=0&sort=id,desc`;
+    }/api/v1/pets?size10&page=0&sort=id,asc`;
     try {
       const res = await fetch(url);
       const data = await res.json();
@@ -55,7 +55,6 @@ const ContactoMascotaProvider = ({ children }) => {
       } = JSON.parse(localStorage.getItem("userInfo"));
 
       if (!token) {
-        
         throw new Error("No se pudo obtener el token del usuario.");
       }
       let url = `${import.meta.env.VITE_API_BACKEND}/user/profile`;
@@ -188,6 +187,9 @@ const ContactoMascotaProvider = ({ children }) => {
 
   const onDeletePet = async (id) => {
     try {
+      setLastPets(lastPets.filter((pet) => pet.id !== id));
+      setPets(pets.filter((pet) => pet.id !== id));
+      setPetsOfUser(petsOfUser.filter((pet) => pet.id !== id));
       let {
         state: {
           user: { token },
@@ -197,8 +199,6 @@ const ContactoMascotaProvider = ({ children }) => {
       if (!token) {
         throw new Error("No se pudo obtener el token del usuario.");
       }
-
-      setPetsOfUser(petsOfUser.filter((pet) => pet.id !== id));
 
       let url = `${import.meta.env.VITE_API_BACKEND}/api/v1/pet/${id}`;
 
